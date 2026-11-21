@@ -48,23 +48,23 @@ Dann http://localhost:8000 öffnen.
 
 ### Eigene Domain dosano.app
 
-1. Domain bei einem Registrar kaufen (z. B. INWX, Cloudflare Registrar oder Porkbun).
-2. Beim Registrar die DNS-Einträge setzen (laut GitHub-Dokumentation
+Gekauft bei Cloudflare. Die Datei `CNAME` (Inhalt `dosano.app`), `sitemap.xml`, `robots.txt`
+und die vollen Adressen in `canonical`, `hreflang` und `og:image` sind schon im Repo.
+
+1. Cloudflare, dosano.app, DNS, Records (laut GitHub-Dokumentation
    "Managing a custom domain for your GitHub Pages site"):
-   - `A`-Einträge für `@` (also `dosano.app`): 185.199.108.153, 185.199.109.153,
+   - vier `A`-Einträge, Name `@`: 185.199.108.153, 185.199.109.153,
      185.199.110.153, 185.199.111.153
-   - optional `AAAA`-Einträge für `@`: 2606:50c0:8000::153, 2606:50c0:8001::153,
+   - vier `AAAA`-Einträge, Name `@`: 2606:50c0:8000::153, 2606:50c0:8001::153,
      2606:50c0:8002::153, 2606:50c0:8003::153
-   - `CNAME`-Eintrag `www` auf `antolam73.github.io`
-3. Auf GitHub: Settings, Pages, "Custom domain" `dosano.app` eintragen, Save.
-   GitHub legt dabei die Datei `CNAME` in `main` an.
-4. Warten, bis der DNS-Check grün ist und GitHub das Zertifikat ausgestellt hat
-   (kann bis zu einer Stunde dauern), dann "Enforce HTTPS" anhaken.
-   `.app`-Domains funktionieren nur mit HTTPS, vorher zeigt der Browser einen Fehler.
-5. Empfohlen: Domain im GitHub-Konto bestätigen (Settings des Kontos, Pages,
-   "Add a domain"), damit niemand anderes sie für eigene Seiten nutzen kann.
-6. Danach `og:image` auf `https://dosano.app/assets/img/og.png` umstellen und eine
-   `sitemap.xml` ergänzen.
+   - ein `CNAME`-Eintrag, Name `www`, Ziel `antolam73.github.io`
+   - bei allen "Proxy status" auf "DNS only" (graue Wolke), sonst kann GitHub kein
+     Zertifikat ausstellen
+2. GitHub, Repo, Settings, Pages, "Custom domain" `dosano.app` eintragen, Save.
+3. Warten, bis der DNS-Check grün ist und das Zertifikat da ist (bis zu einer Stunde),
+   dann "Enforce HTTPS" anhaken. `.app` funktioniert nur mit HTTPS.
+4. Empfohlen: Domain im GitHub-Konto bestätigen (Konto-Settings, Pages, "Add a domain",
+   TXT-Eintrag bei Cloudflare anlegen), damit niemand sonst sie nutzen kann.
 
 ## Startseite bearbeiten
 
