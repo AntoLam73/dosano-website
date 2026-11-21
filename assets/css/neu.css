@@ -452,7 +452,7 @@ button.comp-box:focus-visible { outline: 2.5px solid #C4F9BC; outline-offset: 5p
 .custom { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
 @media (max-width: 900px) { .custom { grid-template-columns: 1fr; } }
 .custom .phone { width: min(320px, 80vw); margin-inline: auto; }
-.custom .phone .screen { height: 100%; }
+.custom .phone .screen { height: auto; }
 .picker h3 { font: 600 1.05rem/1.2 var(--sans); letter-spacing: 0; margin: 28px 0 12px; }
 .swatches { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
 .swatches button {

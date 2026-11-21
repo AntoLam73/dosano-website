@@ -426,16 +426,41 @@ section { position: relative; }
    Maße in Punkten wie auf dem iPhone: 1 Punkt = var(--u), die Breite des
    Bildschirms entspricht 393 Punkten. */
 
+/* iPhone 17 nach der Figma-Vorlage: schmaler Titanrahmen (1 % der Breite), schwarzer
+   Rand ums Display (2,5 %), Ecken 15 %. Links Aktionstaste und Lautstärke, rechts die
+   Seitentaste. Das Display behält 393 x 852 Punkte, daraus ergibt sich das Seitenverhältnis. */
 .phone {
-  position: relative; aspect-ratio: 393 / 852;
-  padding: 3.2%;
-  border-radius: 15% / 7%;
-  background: linear-gradient(145deg, #3a3a38, #121211 45%, #2a2a28);
+  position: relative; container-type: inline-size;
+  aspect-ratio: 1 / 2.0862;
+  padding: 0;
+  border-radius: 15% / 7.2%;
+  background: linear-gradient(160deg, #9a9a9d 0%, #48484b 14%, #6f6f72 42%, #2f2f31 68%, #808083 90%, #5a5a5d 100%);
   box-shadow:
-    0 0 0 1px rgb(255 255 255 / 0.08) inset,
-    0 0 0 2px #0b0b0a,
-    0 40px 80px -20px rgb(0 0 0 / 0.45),
-    0 18px 30px -12px rgb(0 0 0 / 0.35);
+    inset 0 0 0 0.6px rgb(0 0 0 / 0.55),
+    inset 0 0 0 1.4px rgb(255 255 255 / 0.22),
+    0 0 0 0.6px rgb(0 0 0 / 0.5),
+    0 40px 80px -24px rgb(0 0 0 / 0.42),
+    0 16px 28px -14px rgb(0 0 0 / 0.32);
+}
+/* Display mit festem Abstand zum Rand, gemessen an der Breite des Telefons (cqw) */
+.phone > .screen { position: absolute; inset: 3.5cqw; height: auto;
+  box-shadow: 0 0 0 2.6cqw #000, 0 0 0 calc(2.6cqw + 0.6px) #1c1c1e; }
+.phone::before, .phone::after {
+  content: ""; position: absolute; width: 1.1cqw; border-radius: 0.6cqw;
+  background-color: transparent;
+}
+/* links: Aktionstaste, Lauter, Leiser */
+.phone::before {
+  left: -0.75cqw; top: 20.4%; height: 24.9%;
+  background-image: linear-gradient(180deg,
+    #6c6c6f 0, #8a8a8d 1%, #4a4a4c 17.5%, transparent 18.5%,
+    transparent 33.3%, #6c6c6f 33.3%, #8a8a8d 35%, #4a4a4c 61%, transparent 62.2%,
+    transparent 70.7%, #6c6c6f 70.7%, #8a8a8d 72.5%, #4a4a4c 99%, transparent 100%);
+}
+/* rechts: Seitentaste */
+.phone::after {
+  right: -0.75cqw; top: 31%; height: 11.8%;
+  background-image: linear-gradient(90deg, #4a4a4c, #8a8a8d 60%, #5a5a5c);
 }
 .screen {
   --u: calc(100cqw / 393);
@@ -451,6 +476,13 @@ section { position: relative; }
   position: absolute; z-index: 20; left: 50%; top: calc(var(--u) * 11);
   width: calc(var(--u) * 124); height: calc(var(--u) * 36); border-radius: 99px;
   background: #000; transform: translateX(-50%);
+}
+/* Kameralinse rechts in der Dynamic Island */
+.island::after {
+  content: ""; position: absolute; top: 50%; right: calc(var(--u) * 10);
+  width: calc(var(--u) * 13); height: calc(var(--u) * 13); border-radius: 50%; transform: translateY(-50%);
+  background: radial-gradient(circle at 38% 36%, #4a5a9a 0 14%, #1a2244 36%, #0b0d18 62%, #050507 100%);
+  box-shadow: 0 0 0 calc(var(--u) * 1.2) #121214;
 }
 .statusbar {
   position: relative; z-index: 10; display: flex; justify-content: space-between; align-items: center;
