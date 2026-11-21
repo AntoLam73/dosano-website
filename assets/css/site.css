@@ -584,7 +584,8 @@ button.tray:focus-visible { outline: 2.5px solid var(--moss-label); outline-offs
 .chip.open::before { background: transparent; box-shadow: 0 0 0 1.5px currentColor inset; }
 .chip.due-chip { background: var(--accent); color: var(--accent-ink); }
 .swap { display: grid; }
-.swap > * { grid-area: 1 / 1; transition: opacity 240ms var(--ease-out); }
+.swap > * { grid-area: 1 / 1; justify-self: end; align-self: center; transition: opacity 240ms var(--ease-out); }
+.due-head.swap > * { justify-self: start; }
 .swap > .after { opacity: 0; }
 .screen.is-taken .swap > .before { opacity: 0; }
 .screen.is-taken .swap > .after { opacity: 1; }
