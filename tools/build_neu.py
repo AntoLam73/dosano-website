@@ -46,7 +46,7 @@ def today_top(key: str, shown: float, interactive: bool) -> str:
     close = '</button>' if interactive else '</span>'
     return f'''<div class="t2-head" aria-hidden="true">
             <div><div class="t2-kicker">Heute · Samstag</div><div class="t2-date">21. November</div></div>
-            <span class="t2-gear"><svg><use href="assets/img/icons.svg#i-gear"/></svg></span>
+            <span class="t2-gear"><svg><use href="assets/img/icons.svg#i-gear-fill"/></svg></span>
           </div>
           <div class="arc2" aria-hidden="true" data-arc="{key}" data-shown="{shown}">
             <svg viewBox="0 0 240 172">
