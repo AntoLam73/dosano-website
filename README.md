@@ -69,6 +69,10 @@ Die Startseite `index.html` wird aus `index.src.html` erzeugt. Schriftzug und Ko
 python3 tools/build_neu.py
 ```
 
+Das Skript hängt außerdem an alle Einbindungen von CSS, JS und Symbolen eine Versionsnummer
+(`?v=...`), damit Browser nach einer Änderung nicht die alte Datei aus dem Zwischenspeicher
+nehmen. Deshalb nach jeder Änderung an CSS oder JS einmal ausführen.
+
 Styles in `assets/css/site.css` und `assets/css/neu.css`, Bewegung in `assets/js/neu.js`.
 Die alte Adresse `neu.html` leitet zur Startseite weiter. Die erste Fassung liegt als
 `alt.html` daneben.

@@ -4,7 +4,9 @@ einmal gepflegt werden müssen.
 
     python3 tools/build_neu.py
 """
+import hashlib
 import math
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -89,5 +91,23 @@ def main() -> None:
     (ROOT / 'index.html').write_text(src.replace('<!doctype html>\n', '<!doctype html>\n' + header, 1), encoding='utf-8')
 
 
+ASSETS = ['assets/css/site.css', 'assets/css/neu.css', 'assets/js/neu.js', 'assets/js/site.js', 'assets/img/icons.svg']
+PAGES = ['index.html', 'alt.html', 'datenschutz.html', 'impressum.html', 'support.html', 'en/index.html', '404.html']
+
+
+def stamp() -> None:
+    """Hängt an jede Einbindung von CSS, JS und Symbolen eine Versionsnummer aus dem Inhalt
+    der Datei (?v=...). So lädt der Browser nach einer Änderung sicher die neue Datei statt
+    einer alten aus seinem Zwischenspeicher."""
+    versions = {a: hashlib.sha1((ROOT / a).read_bytes()).hexdigest()[:8] for a in ASSETS}
+    for page in PAGES:
+        path = ROOT / page
+        html = path.read_text(encoding='utf-8')
+        for asset, v in versions.items():
+            html = re.sub(re.escape(asset) + r'(\?v=[0-9a-f]+)?(?=["#])', f'{asset}?v={v}', html)
+        path.write_text(html, encoding='utf-8')
+
+
 if __name__ == '__main__':
     main()
+    stamp()
