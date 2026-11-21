@@ -300,7 +300,7 @@
   // Sperrbildschirm: Mitteilung, Live Activity mit Countdown -------------
   var lock = $('#lockStage');
   if (lock) {
-    var notif = $('#notif'), la = $('#la'), laDesc = $('#laDesc'), laStatus = $('#laStatus'), bar = $('#laBar');
+    var la = $('#la'), laDesc = $('#laDesc'), laStatus = $('#laStatus'), bar = $('#laBar');
     var DESC = {
       compact: 'Klein wie eine Mitteilung, mit Abhaken und Später.',
       progress: 'Dazu der Fortschritt des Tages als Kästchen.',
@@ -315,7 +315,6 @@
     function tick() { if (remaining > 0) { remaining--; paint(); } }
     paint();
     onVisible(lock, function () {
-      wait(reduce ? 0 : 450).then(function () { notif.classList.add('is-in'); });
       timer = setInterval(tick, 1000);
     });
 
@@ -335,14 +334,12 @@
       });
     });
     function done() {
-      notif.classList.add('is-gone');
       morph(function () { la.classList.add('is-done'); });
       laStatus.textContent = 'Als genommen eingetragen.';
       clearInterval(timer);
       wait(4500).then(function () {
         remaining = 12 * 60; paint();
         morph(function () { la.classList.remove('is-done'); });
-        notif.classList.remove('is-gone');
         timer = setInterval(tick, 1000);
       });
     }
@@ -350,8 +347,6 @@
       remaining = 15 * 60; paint();
       laStatus.textContent = 'Erinnerung in 15 Minuten.';
       $$('[data-cd]', la).forEach(function (el) { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); });
-      notif.classList.add('is-gone');
-      wait(3500).then(function () { notif.classList.remove('is-gone'); });
     }
     lock.addEventListener('click', function (e) {
       var t = e.target.closest('[data-act]');
@@ -383,47 +378,54 @@
     $$('[data-take]', home).forEach(function (b) { b.addEventListener('click', function () { setW(!wTaken); }); });
   }
 
-  // Verlauf: Kalender mit Tagen zum Antippen ------------------------------
+  // Verlauf: Kalender wie in der App, Tage zum Antippen --------------------
   var grid = $('#calGrid');
   if (grid) {
+    var ICO = function (n) { return '<svg aria-hidden="true"><use href="' + ICONS + '#' + n + '"/></svg>'; };
     var STATUS = {}; var i;
-    for (i = 1; i <= 20; i++) STATUS[i] = 'ok';
-    STATUS[6] = 'late'; STATUS[12] = 'part'; STATUS[17] = 'late'; STATUS[21] = 'today';
-    var LABEL = { ok: 'pünktlich', late: 'verspätet', part: 'teilweise', today: 'heute, noch offen' };
+    for (i = 1; i <= 20; i++) STATUS[i] = 'perfect';
+    STATUS[6] = 'allTaken'; STATUS[12] = 'partial'; STATUS[17] = 'allTaken'; STATUS[21] = 'open';
+    var LABEL = { perfect: 'alles pünktlich genommen', allTaken: 'alles genommen, manches verspätet', partial: 'teilweise genommen', open: 'noch offen' };
+    var WD = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
     for (i = 0; i < 6; i++) grid.appendChild(document.createElement('span'));
-    var idx = 0;
     for (i = 1; i <= 30; i++) {
-      var st = STATUS[i];
-      var el = document.createElement(st ? 'button' : 'span');
-      el.className = 'd' + (st ? ' ' + st : '') + (i >= 27 ? ' warn' : '');
-      el.textContent = i;
-      el.style.setProperty('--i', idx++);
-      if (st) {
-        el.type = 'button';
-        el.setAttribute('aria-label', i + '. November: ' + LABEL[st]);
-        el.setAttribute('aria-pressed', String(i === 21));
-        el.dataset.day = i;
+      var st = STATUS[i] || 'future', short = i >= 27;
+      var cell = document.createElement(STATUS[i] ? 'button' : 'span');
+      cell.className = 'h-cell';
+      var c = document.createElement('span');
+      c.className = 'h-day-c ' + st + (i === 21 ? ' today' : '') + (short ? ' short' : '');
+      c.textContent = i;
+      c.style.setProperty('--i', i);
+      c.setAttribute('aria-hidden', 'true');
+      cell.appendChild(c);
+      if (STATUS[i]) {
+        cell.type = 'button';
+        cell.setAttribute('aria-label', (i === 21 ? 'Heute, ' : '') + WD[new Date(2026, 10, i).getDay()] + ', ' + i + '. November: ' + LABEL[st]);
+        cell.setAttribute('aria-pressed', String(i === 21));
+        cell.dataset.day = i;
       } else {
-        el.setAttribute('aria-hidden', 'true');
+        cell.setAttribute('aria-hidden', 'true');
       }
-      grid.appendChild(el);
+      grid.appendChild(cell);
     }
     var log = $('#dayLog');
-    function row(time, name, dose, sub, chip, label) {
-      return '<div class="log-row" style="--i:' + (row.n++) + '"><span class="time">' + time + '</span><div><div class="med">' + name + '<small>' + dose + '</small></div><div class="sub">' + sub + '</div></div><span class="chip ' + chip + '">' + label + '</span></div>';
+    function row(time, name, dose, sub, chip) {
+      return '<div class="h-row"><span class="t">' + time + '</span><div class="n"><b>' + name + '<small>' + dose + '</small></b><div>' + sub + '</div></div>' + chip + '</div>';
     }
+    function chip(kind, icon, text) { return '<span class="ochip ' + kind + '">' + ICO(icon) + text + '</span>'; }
     function showDay(day) {
-      var st = STATUS[day]; row.n = 0;
-      var wd = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'][new Date(2026, 10, day).getDay()];
-      var m1 = 2 + (day * 7) % 9, m2 = 1 + (day * 5) % 8;
-      var a = row('7:00', 'L-Thyroxin', '50 µg', 'genommen um 7:0' + m1, 'ok', 'Genommen');
+      var st = STATUS[day];
+      var d = new Date(2026, 10, day);
+      var title = (day === 21 ? 'Heute · ' : (day === 20 ? 'Gestern · ' : '')) + WD[d.getDay()] + ', ' + day + '. November';
+      var m1 = 2 + (day * 7) % 8, m2 = 1 + (day * 5) % 8;
+      var a = row('7:00', 'L-Thyroxin', '50 µg', '1 Tablette · nüchtern', chip('ok', 'i-tick', '7:0' + m1));
       var b;
-      if (st === 'late') b = row('21:00', 'Metformin', '500 mg', 'genommen um 22:1' + m2, 'late', 'Verspätet');
-      else if (st === 'part') b = row('21:00', 'Metformin', '500 mg', 'ausgelassen', 'skipped', 'Ausgelassen');
-      else if (st === 'today') b = row('21:00', 'Metformin', '500 mg', '1 Tablette · zum Essen', 'open', 'Offen');
-      else b = row('21:00', 'Metformin', '500 mg', 'genommen um 21:0' + m2, 'ok', 'Genommen');
-      var count = st === 'part' ? '1 von 2' : (st === 'today' ? '1 von 2' : '2 von 2');
-      log.innerHTML = '<div class="day-title"><b>' + (st === 'today' ? 'Heute' : wd + ', ' + day + '. Nov.') + '</b><span>' + count + '</span></div>' + a + b;
+      if (st === 'allTaken') b = row('21:00', 'Metformin', '500 mg', '1 Tablette · zum Essen', chip('late', 'i-clock', '22:1' + m2));
+      else if (st === 'partial') b = row('21:00', 'Metformin', '500 mg', '1 Tablette · zum Essen', chip('skip', 'i-xmark', 'Ausgelassen'));
+      else if (st === 'open') b = row('21:00', 'Metformin', '500 mg', '1 Tablette · zum Essen', chip('open', 'i-circle-dashed', 'Offen'));
+      else b = row('21:00', 'Metformin', '500 mg', '1 Tablette · zum Essen', chip('ok', 'i-tick', '21:0' + m2));
+      var count = (st === 'partial' || st === 'open') ? '1 von 2' : '2 von 2';
+      log.innerHTML = '<div class="h-daycard"><div class="h-dh"><b>' + title + '</b><span>' + count + '</span></div>' + a + b + '</div>';
     }
     grid.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-day]');
@@ -439,12 +441,14 @@
     });
   }
 
-  // Bestand: Packungsgröße einstellen, Vorrat auffüllen -------------------
+  // Bestand: Packungsgröße einstellen, Vorrat auffüllen, zurücksetzen -----
   var stock = $('#stock');
   if (stock) {
     onVisible(stock, function () { stock.classList.add('is-in'); });
     var left = 5, perDay = 1, pack = 100, filled = false;
     var sizeEl = $('#packSize'), roll = $('#packRoll'), until = $('#refillUntil'), btn = $('#refillBtn');
+    var jar = $('#jarMetf'), jarFill = $('i', jar), jd = $('#jarMetfDays'), rd = $('#reachDays');
+    var START = { jarH: jarFill.style.height || '12%' };
     function preview() { until.textContent = 'bis ' + shortDate(addDays(Math.floor((left + pack) / perDay))); }
     function stepPack(d) {
       if (filled) return;
@@ -454,32 +458,46 @@
       roll.classList.remove('up', 'down'); void roll.offsetWidth; roll.classList.add(d > 0 ? 'up' : 'down');
       preview();
     }
+    function swapReach(text, sub, color) {
+      rd.style.color = color;
+      if (!reduce && rd.animate) rd.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 420, easing: EASE_OUT });
+      rd.textContent = text;
+      $('#reachSub').textContent = sub;
+    }
     $('#packPlus').addEventListener('click', function () { stepPack(10); });
     $('#packMinus').addEventListener('click', function () { stepPack(-10); });
     $('#refillSub').textContent = 'Metformin 500 mg · noch ' + left + ' Tabletten';
     preview();
-    btn.addEventListener('click', function () {
-      if (filled) return;
+    jarFill.style.transition = reduce ? 'none' : 'height 1300ms cubic-bezier(0.34, 1.2, 0.64, 1)';
+    function fill() {
       filled = true;
       var count = left + pack, days = Math.floor(count / perDay);
-      btn.setAttribute('aria-disabled', 'true');
-      btn.textContent = 'Aufgefüllt';
+      btn.textContent = 'Zurücksetzen';
+      btn.classList.remove('btn-primary'); btn.classList.add('btn-quiet');
       $('#refillSub').textContent = 'Metformin 500 mg · jetzt ' + count + ' Tabletten';
-      var jar = $('#jarMetf');
+      $('#packMinus').disabled = $('#packPlus').disabled = true;
       jar.style.setProperty('--fill', 'var(--accent)');
-      var i = $('i', jar);
-      i.style.transition = reduce ? 'none' : 'height 1300ms cubic-bezier(0.34, 1.2, 0.64, 1)';
-      i.style.height = Math.min(92, 12 + days / 1.4) + '%';
-      var jd = $('#jarMetfDays'); jd.style.color = 'var(--accent)';
+      jarFill.style.height = Math.min(92, 12 + days / 1.4) + '%';
+      jd.style.color = 'var(--accent)';
       countUp(jd, days, ' T', 1200);
       // Jetzt reicht Vitamin D3 am kürzesten.
-      var rd = $('#reachDays');
-      rd.style.color = 'var(--accent)';
-      if (!reduce && rd.animate) rd.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 420, easing: EASE_OUT });
-      rd.textContent = '38 Tage';
-      $('#reachSub').textContent = 'bis ' + shortDate(addDays(38)) + ' · Vitamin D3 1000 IE';
-      $('#refillStatus').textContent = 'Vorrat aufgefüllt: ' + count + ' Tabletten, reicht ' + days + ' Tage.';
-    });
+      swapReach('38 Tage', 'bis ' + shortDate(addDays(38)) + ' · Vitamin D3 1000 IE', 'var(--accent)');
+      $('#refillStatus').textContent = 'Vorrat aufgefüllt: ' + count + ' Tabletten, reicht ' + days + ' Tage. Mit Zurücksetzen kannst du es noch einmal ausprobieren.';
+    }
+    function unfill() {
+      filled = false;
+      btn.textContent = 'Vorrat auffüllen';
+      btn.classList.add('btn-primary'); btn.classList.remove('btn-quiet');
+      $('#refillSub').textContent = 'Metformin 500 mg · noch ' + left + ' Tabletten';
+      $('#packMinus').disabled = $('#packPlus').disabled = false;
+      jar.style.setProperty('--fill', 'var(--amber)');
+      jarFill.style.height = START.jarH;
+      jd.style.color = 'var(--amber-text)';
+      jd.textContent = Math.floor(left / perDay) + ' T';
+      swapReach(Math.floor(left / perDay) + ' Tage', 'bis ' + shortDate(addDays(Math.floor(left / perDay))) + ' · Metformin 500 mg', 'var(--amber-text)');
+      $('#refillStatus').textContent = 'Zurückgesetzt: noch ' + left + ' Tabletten.';
+    }
+    btn.addEventListener('click', function () { if (filled) unfill(); else fill(); });
   }
 
   // Personalisieren: Hintergründe und App-Symbole ------------------------
@@ -513,13 +531,14 @@
       btn.appendChild(makeBd(b[0]));
       btn.addEventListener('click', function () {
         $$('button', bdPicker).forEach(function (x) { x.setAttribute('aria-pressed', String(x === btn)); });
-        var old = $(':scope > .bd', screen);
+        // Neue Schicht immer als oberste einfügen und alle älteren danach entfernen.
+        var layers = $$(':scope > .bd', screen);
         var nu = makeBd(b[0]);
         nu.style.opacity = '0';
-        old.after(nu);
-        requestAnimationFrame(function () {
-          nu.style.opacity = '1';
-          wait(reduce ? 0 : 520).then(function () { old.remove(); });
+        layers[layers.length - 1].after(nu);
+        requestAnimationFrame(function () { requestAnimationFrame(function () { nu.style.opacity = '1'; }); });
+        wait(reduce ? 0 : 520).then(function () {
+          if (nu.parentNode) layers.forEach(function (l) { if (l.parentNode) l.parentNode.removeChild(l); });
         });
         cur.bd = b[1]; say();
       });

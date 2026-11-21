@@ -43,5 +43,8 @@
 <symbol id="i-warn" viewBox="0 0 24 24"><path fill="#E3A04A" d="M10.3 3.9a2 2 0 0 1 3.4 0l8 13.8A2 2 0 0 1 20 20.7H4a2 2 0 0 1-1.7-3Z"/><path d="M12 9v4.5" stroke="#2B1804" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.2" fill="#2B1804"/></symbol>
 <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
 <symbol id="i-gear-fill" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M19.55 9.67 L22.00 9.97 L22.00 14.03 L19.55 14.33 L18.99 15.69 L20.50 17.64 L17.64 20.50 L15.69 18.99 L14.33 19.55 L14.03 22.00 L9.97 22.00 L9.67 19.55 L8.31 18.99 L6.36 20.50 L3.50 17.64 L5.01 15.69 L4.45 14.33 L2.00 14.03 L2.00 9.97 L4.45 9.67 L5.01 8.31 L3.50 6.36 L6.36 3.50 L8.31 5.01 L9.67 4.45 L9.97 2.00 L14.03 2.00 L14.33 4.45 L15.69 5.01 L17.64 3.50 L20.50 6.36 L18.99 8.31 Z M15.3 12 A3.3 3.3 0 1 0 8.7 12 A3.3 3.3 0 1 0 15.3 12 Z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-xmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+<symbol id="i-circle-dashed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="3.2 3.4"><circle cx="12" cy="12" r="8.5"/></symbol>
 </defs>
 </svg>

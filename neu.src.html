@@ -69,10 +69,10 @@
             <div class="grabber"></div>
             <div class="due">
               <div class="due-head swap"><span class="before">Jetzt fällig · 21:00 <span class="count">1 von 2</span></span><span class="after">Für heute alles erledigt <span class="count">2 von 2</span></span></div>
-              <div class="due-row"><i class="dot" style="background:#8DAA74"></i><div><div class="med">Metformin<small>500 mg</small></div><div class="sub">1 Tablette · zum Essen</div></div><span class="swap"><span class="chip due-chip before">Fällig</span><span class="chip ok after">Genommen</span></span></div>
+              <div class="due-row"><i class="dot" style="background:#8DAA74"></i><div><div class="med">Metformin<small>500 mg</small></div><div class="sub">1 Tablette · zum Essen</div></div><span class="swap"><span class="ochip due before"><i></i>Jetzt</span><span class="ochip ok after"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-tick"/></svg>21:02</span></span></div>
             </div>
             <div class="day-title"><b>Mein Tag</b><span>2 Einnahmen</span></div>
-            <div class="log-row"><span class="time">7:00</span><div><div class="med">L-Thyroxin<small>50 µg</small></div><div class="sub">1 Tablette · nüchtern</div></div><span class="chip ok">Genommen</span></div>
+            <div class="log-row"><span class="time">7:00</span><div><div class="med">L-Thyroxin<small>50 µg</small></div><div class="sub">1 Tablette · nüchtern</div></div><span class="ochip ok"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-tick"/></svg>7:03</span></div>
           </div>
           <div class="tabbar" aria-hidden="true">
             <div class="tabs"><span class="tab is-active"><svg><use href="assets/img/icons.svg#i-sun"/></svg>Heute</span><span class="tab"><svg><use href="assets/img/icons.svg#i-bars"/></svg>Verlauf</span><span class="tab"><svg><use href="assets/img/icons.svg#i-box"/></svg>Bestand</span></div>
@@ -104,10 +104,6 @@
     <div class="stage-dark reveal" style="--delay:120ms" id="lockStage">
       <div class="bd" data-bd="moss" aria-hidden="true"></div>
       <div class="lock-time" aria-hidden="true"><small>Samstag, 21. November</small><b id="lockClock">20:48</b></div>
-      <div class="notif notif2" id="notif" role="group" aria-label="Beispiel einer Mitteilung">
-        <div class="notif-top"><img src="assets/img/icon.png" alt="" width="38" height="38"><div><b>Zeit für Metformin</b><p>1 Tablette · zum Essen</p></div><time>jetzt</time></div>
-        <div class="notif-actions"><button type="button" data-act="take">Genommen</button><button type="button" data-act="later">In 15 Min erinnern</button></div>
-      </div>
       <div class="la-switch" role="group" aria-label="Darstellung der Live Activity">
         <button type="button" data-v="compact" aria-pressed="false">Kompakt</button>
         <button type="button" data-v="progress" aria-pressed="false">Mit Fortschritt</button>
@@ -217,7 +213,6 @@
           </div><span>Dosano</span>
         </div>
       </div>
-      <div class="search" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-search"/></svg>Suchen</div>
       <p class="visually-hidden" role="status" id="wStatus"></p>
     </div>
   </div>
@@ -236,14 +231,26 @@
       </ul>
       <a class="store-link" href="https://apps.apple.com/de/app/dosano/id0000000000">Im App Store laden<svg aria-hidden="true"><use href="assets/img/icons.svg#i-arrow"/></svg></a>
     </div>
-    <div class="cal2" id="cal">
-      <div class="cal-head" aria-hidden="true"><span class="round"><svg><use href="assets/img/icons.svg#i-chev-left"/></svg></span><div><b>November 2026</b><small>Dieser Monat</small></div><span class="round"><svg><use href="assets/img/icons.svg#i-chev-right"/></svg></span></div>
-      <div class="cal-grid" id="calGrid" role="group" aria-label="Kalender November 2026">
-        <span class="wd" aria-hidden="true">Mo</span><span class="wd" aria-hidden="true">Di</span><span class="wd" aria-hidden="true">Mi</span><span class="wd" aria-hidden="true">Do</span><span class="wd" aria-hidden="true">Fr</span><span class="wd" aria-hidden="true">Sa</span><span class="wd" aria-hidden="true">So</span>
+    <div class="phone reveal" style="--delay:120ms">
+      <div class="screen hist" id="cal">
+        <div class="island" aria-hidden="true"></div>
+        <div class="statusbar" aria-hidden="true"><span>21:02</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="assets/img/icons.svg#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="assets/img/icons.svg#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="assets/img/icons.svg#i-battery"/></svg></span></div>
+        <div class="h-title" aria-hidden="true">Verlauf</div>
+        <div class="h-card">
+          <div class="h-head" aria-hidden="true"><span class="h-nav"><svg><use href="assets/img/icons.svg#i-chev-left"/></svg></span><div><b>November 2026</b><small>Dieser Monat</small></div><span class="h-nav"><svg><use href="assets/img/icons.svg#i-chev-right"/></svg></span></div>
+          <div class="h-grid" id="calGrid" role="group" aria-label="Kalender November 2026">
+            <span class="wd" aria-hidden="true">Mo</span><span class="wd" aria-hidden="true">Di</span><span class="wd" aria-hidden="true">Mi</span><span class="wd" aria-hidden="true">Do</span><span class="wd" aria-hidden="true">Fr</span><span class="wd" aria-hidden="true">Sa</span><span class="wd" aria-hidden="true">So</span>
+          </div>
+          <div class="h-legend" aria-hidden="true"><div><span><i style="background:var(--accent)"></i>Pünktlich</span><span><i style="background:var(--accent-soft)"></i>Verspätet</span><span><i style="background:var(--amber-soft)"></i>Teilweise</span><span><i style="background:var(--red-soft)"></i>Verpasst</span></div><div><span><i class="short-mark"></i>Vorrat reicht nicht</span></div></div>
+        </div>
+        <div class="h-stats" id="stats"><div><b class="g" data-to="39" data-suffix="/40">0/40</b><span>Genommen</span></div><div><b class="g" data-to="95" data-suffix=" %">0 %</b><span>Pünktlich</span></div><div><b class="r" data-to="1" data-suffix="">0</b><span>Ausgelassen</span></div></div>
+        <div class="h-day" id="dayLog" aria-live="polite"></div>
+        <div class="tabbar" aria-hidden="true">
+          <div class="tabs"><span class="tab"><svg><use href="assets/img/icons.svg#i-sun"/></svg>Heute</span><span class="tab is-active"><svg><use href="assets/img/icons.svg#i-bars"/></svg>Verlauf</span><span class="tab"><svg><use href="assets/img/icons.svg#i-box"/></svg>Bestand</span></div>
+          <span class="tab-plus"><svg><use href="assets/img/icons.svg#i-plus"/></svg></span>
+        </div>
+        <div class="home-ind" aria-hidden="true"></div>
       </div>
-      <div class="legend" aria-hidden="true"><span><i style="background:var(--accent)"></i>Pünktlich</span><span><i style="background:color-mix(in oklab, var(--accent) 42%, var(--surface))"></i>Verspätet</span><span><i style="background:var(--amber)"></i>Teilweise</span><span><i style="background:var(--red-fill)"></i>Verpasst</span></div>
-      <div class="stats stats2" id="stats"><div><b class="g" data-to="39" data-suffix="/40">0/40</b><span>Genommen</span></div><div><b class="g" data-to="95" data-suffix=" %">0 %</b><span>Pünktlich</span></div><div><b class="r" data-to="1" data-suffix="">0</b><span>Ausgelassen</span></div></div>
-      <div class="day-log" id="dayLog" aria-live="polite"></div>
     </div>
   </div>
 </section>
@@ -352,7 +359,7 @@
 <section class="section" id="fragen" aria-labelledby="q-title">
   <div class="wrap faq-grid">
     <div class="section-head">
-      <h2 id="q-title">Gute Fragen.</h2>
+      <h2 id="q-title">FAQ</h2>
       <p>Deine ist nicht dabei? Schreib uns, wir antworten gern.</p>
       <a class="store-link" href="support.html" style="margin-top:20px">Zum Support<svg aria-hidden="true"><use href="assets/img/icons.svg#i-arrow"/></svg></a>
     </div>
@@ -391,7 +398,7 @@
     <div class="icon-cycle" id="iconCycle" role="img" aria-label="App-Symbol von Dosano in verschiedenen Varianten">
       <img class="is-on" src="assets/img/app-icons/default.webp" alt="" width="120" height="120">
     </div>
-    <h2 id="d-title">Morgen früh weißt du es einfach.</h2>
+    <h2 id="d-title">Nie mehr rätseln, ob du sie schon genommen hast.</h2>
     <p>Lade Dosano, leg dein erstes Medikament an oder probier es mit Beispieldaten aus. Dauert keine Minute.</p>
     <a class="btn btn-primary" href="https://apps.apple.com/de/app/dosano/id0000000000"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-store"/></svg>Im App Store laden</a>
     <p class="hero-note">Für iPhone mit iOS 26 oder neuer</p>
