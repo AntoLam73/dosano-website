@@ -91,6 +91,10 @@ def main() -> None:
     (ROOT / 'index.html').write_text(src.replace('<!doctype html>\n', '<!doctype html>\n' + header, 1), encoding='utf-8')
 
 
+# Ist Dosano im App Store? False: App-Store-Knöpfe ausgeblendet, "Erinnere mich zum Start"
+# an ihrer Stelle. Zum Start auf True setzen, App-ID eintragen und neu bauen.
+LAUNCHED = False
+
 ASSETS = ['assets/css/site.css', 'assets/css/neu.css', 'assets/js/neu.js', 'assets/js/site.js', 'assets/img/icons.svg']
 PAGES = ['index.html', 'alt.html', 'datenschutz.html', 'impressum.html', 'support.html', 'en/index.html', '404.html']
 
@@ -105,6 +109,8 @@ def stamp() -> None:
         html = path.read_text(encoding='utf-8')
         for asset, v in versions.items():
             html = re.sub(re.escape(asset) + r'(\?v=[0-9a-f]+)?(?=["#])', f'{asset}?v={v}', html)
+        html = re.sub(r'<html lang="(\w+)"( class="vor-start")?>',
+                      lambda m: f'<html lang="{m.group(1)}"' + ('' if LAUNCHED else ' class="vor-start"') + '>', html, count=1)
         path.write_text(html, encoding='utf-8')
 
 

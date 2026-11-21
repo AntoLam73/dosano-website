@@ -76,3 +76,14 @@ nehmen. Deshalb nach jeder Änderung an CSS oder JS einmal ausführen.
 Styles in `assets/css/site.css` und `assets/css/neu.css`, Bewegung in `assets/js/neu.js`.
 Die alte Adresse `neu.html` leitet zur Startseite weiter. Die erste Fassung liegt als
 `alt.html` daneben.
+
+## Vor dem Start und zum Start
+
+Solange Dosano nicht im App Store ist, steht in `tools/build_neu.py` `LAUNCHED = False`.
+Dann sind alle Knöpfe "Im App Store laden" ausgeblendet, an ihrer Stelle steht
+"Erinnere mich zum Start" (öffnet eine fertige E-Mail an dosano.help@gmail.com).
+
+Zum Start:
+1. App-ID eintragen (siehe oben, `id0000000000` ersetzen).
+2. In `tools/build_neu.py` `LAUNCHED = True` setzen.
+3. `python3 tools/build_neu.py` ausführen, committen und pushen.

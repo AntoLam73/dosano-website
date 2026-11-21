@@ -790,3 +790,12 @@ button.tray:focus-visible { outline: 2.5px solid var(--moss-label); outline-offs
   .site-header, .hero-stage, .gallery-band, .store-link, .btn { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+/* Vor dem Start der App: App-Store-Knöpfe aus, Erinnerung an ihrer Stelle.
+   Umschalten mit LAUNCHED in tools/build_neu.py (setzt die Klasse "vor-start"). */
+.vor-start [data-store] { display: none !important; }
+html:not(.vor-start) [data-prelaunch] { display: none !important; }
+.vor-start .btn-ghost-moss[data-remind] { background: var(--on-moss); color: #183A22; border-color: transparent; box-shadow: 0 6px 22px rgb(0 0 0 / 0.25); }
+.vor-start .btn-ghost-moss[data-remind]:hover { background: #fff; }
+.vor-start .btn-quiet2[data-remind] { background: var(--accent); color: var(--accent-ink); box-shadow: 0 1px 0 rgb(255 255 255 / 0.25) inset, 0 6px 18px color-mix(in oklab, var(--accent) 35%, transparent); }
+html:not(.vor-start) .remind-note { display: none; }
