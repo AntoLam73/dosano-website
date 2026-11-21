@@ -1,109 +1,545 @@
 <!doctype html>
+<!-- Erzeugt von tools/build_neu.py aus en/index.src.html. Bitte dort ändern. -->
 <html lang="en" class="vor-start">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dosano: take your medication on time, keep an eye on your supply</title>
 <meta name="description" content="Dosano reminds you to take your medication, logs every dose and tells you in good time when to restock. All data stays on your iPhone.">
-<meta name="theme-color" content="#3F7A4E">
 <link rel="alternate" hreflang="de" href="../">
 <link rel="alternate" hreflang="en" href="./">
+<meta name="theme-color" content="#183A22">
 <link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/IBMPlexSerif-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/site.css?v=a65f5df6">
+<link rel="stylesheet" href="../assets/css/neu.css?v=61a92740">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dosano: Did I take it? Dosano knows.">
-<meta property="og:description" content="Reminds you, logs every dose, keeps an eye on your supply. Everything stays on your iPhone.">
-<meta property="og:image" content="../assets/img/og.png">
+<meta property="og:description" content="Reminds you to take your medication, logs every dose, keeps an eye on your supply. Everything stays on your iPhone.">
 <meta property="og:locale" content="en_US">
+<!-- Once the app is on the App Store: add the app ID, then Safari shows a banner.
+<meta name="apple-itunes-app" content="app-id=0000000000"> -->
+<meta property="og:image" content="../assets/img/og.png">
+<script>document.documentElement.classList.add('js');setTimeout(function(){var r=document.documentElement;if(!r.classList.contains('js-ok'))r.classList.remove('js')},4000)</script>
+<script src="../assets/js/neu.js?v=9a9805ec" defer></script>
 </head>
 <body>
-<a class="skip-link" href="#content">Skip to content</a>
+<a class="skip-link" href="#inhalt">Skip to content</a>
 
-<!-- English version: prepared. The full feature section, gallery and FAQ can follow
-     the German page (../index.html) once the copy is translated. -->
-
-<header class="site-header wrap">
-  <nav class="nav glass" aria-label="Main navigation">
-    <a class="brand" href="./" aria-label="Dosano, home"><img src="../assets/img/logo-96.png" alt="" width="23" height="24">Dosano</a>
+<header class="site-header n-header wrap">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="./" aria-label="Dosano, home"><span class="wordmark"><img class="wm-d" src="../assets/img/logo-96.png" alt="" width="23" height="24"><span class="wm-rest">osano</span></span></a>
     <ul class="nav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#privacy">Privacy</a></li>
-      <li><a href="../support.html" hreflang="de">Support</a></li>
+      <li><a href="#erinnern">Reminders</a></li>
+      <li><a href="#widgets">Widgets</a></li>
+      <li><a href="#verlauf">History</a></li>
+      <li><a href="#dein-look">Your look</a></li>
+      <li><a href="#fragen">FAQ</a></li>
     </ul>
     <span class="lang"><a href="../" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a></span>
     <a class="btn btn-primary btn-small" href="https://apps.apple.com/app/dosano/id0000000000" data-store><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-store"/></svg>Get</a>
 <a class="btn btn-primary btn-small" href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks" data-prelaunch><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-bell"/></svg>Remind me</a>
+    <span class="scroll-line" aria-hidden="true"></span>
   </nav>
 </header>
 
-<main id="content">
-<section class="hero" aria-labelledby="hero-title">
-  <div class="wrap hero-grid" style="grid-template-columns:minmax(0,1fr)">
+<main id="inhalt">
+
+<!-- Hero ------------------------------------------------------------------>
+<section class="n-hero" aria-labelledby="hero-title">
+  <div class="bd" data-bd="moss" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
     <div class="hero-copy">
-      <h1 id="hero-title">Did I take it? Dosano knows.</h1>
-      <p class="hero-lead">Dosano reminds you to take your medication on time, logs every dose and tells you in good time when to restock. Everything stays on your iPhone.</p>
-      <div class="hero-actions">
+      <h1 id="hero-title" class="enter" style="--i:0">Did I take it? <span class="wordmark" id="heroMark"><img class="wm-d" src="../assets/img/logo-320.png" alt="" width="77" height="80"><span class="wm-rest">osano</span></span> knows.</h1>
+      <p class="hero-lead enter" style="--i:2">Dosano reminds you to take your medication on time, logs every dose and tells you in good time when to restock. Everything stays on your iPhone.</p>
+      <div class="hero-actions enter" style="--i:3">
         <a class="btn btn-on-moss" href="https://apps.apple.com/app/dosano/id0000000000" data-store><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-store"/></svg>Download on the App Store</a>
-<a class="btn btn-on-moss" href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks" data-prelaunch><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-bell"/></svg>Remind me at launch</a>
-        <a class="btn btn-ghost-moss" href="#features">What Dosano does</a>
+        <a class="btn btn-ghost-moss" data-remind href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-bell"/></svg>Remind me at launch</a>
       </div>
-      <p class="hero-note">For iPhone with iOS 26 or later · English and German</p>
+      <p class="hero-note enter" style="--i:4">For iPhone with iOS 26 or later · English and German</p>
+    </div>
+
+    <div class="hero-stage" role="group" aria-labelledby="demo-label">
+      <div class="try2 enter" style="--i:3" id="tryRow">
+        <svg class="hand" aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-hand-draw"/></svg>
+        <span id="demo-label">Give it a try: swipe up the 9:00 PM compartment.</span>
+        <button class="btn btn-ghost-moss btn-small demo-reset" type="button" id="demoReset">Again</button>
+      </div>
+      <div class="phone enter-phone">
+        <div class="screen today2" id="demo">
+          <div class="bd" data-bd="moss" aria-hidden="true"></div>
+          <div class="island" aria-hidden="true"></div>
+          <div class="statusbar" aria-hidden="true" style="color:#fff"><span>9:02</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="../assets/img/icons.svg?v=4f896641#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="../assets/img/icons.svg?v=4f896641#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="../assets/img/icons.svg?v=4f896641#i-battery"/></svg></span></div>
+          <div class="t2-head" aria-hidden="true">
+            <div><div class="t2-kicker">Today · Saturday</div><div class="t2-date">November 21</div></div>
+            <span class="t2-gear"><svg><use href="../assets/img/icons.svg?v=4f896641#i-gear-fill"/></svg></span>
+          </div>
+          <div class="arc2" aria-hidden="true" data-arc="demo" data-shown="0.5">
+            <svg viewBox="0 0 240 172">
+              <defs>
+                <linearGradient id="arcGrad-demo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5FB878"/><stop offset="1" stop-color="#74D68E"/></linearGradient>
+                <radialGradient id="tipGrad-demo"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#74D68E" stop-opacity="0"/></radialGradient>
+              </defs>
+              <g class="ticks"><line x1="17.57" y1="157.28" x2="11.00" y2="159.67" class="l"/><line x1="14.71" y1="148.21" x2="10.85" y2="149.25"/><line x1="12.66" y1="138.93" x2="8.72" y2="139.62"/><line x1="11.41" y1="129.50" x2="7.43" y2="129.85"/><line x1="11.00" y1="120.00" x2="4.00" y2="120.00" class="l"/><line x1="11.41" y1="110.50" x2="7.43" y2="110.15"/><line x1="12.66" y1="101.07" x2="8.72" y2="100.38"/><line x1="14.71" y1="91.79" x2="10.85" y2="90.75"/><line x1="17.57" y1="82.72" x2="11.00" y2="80.33" class="l"/><line x1="21.21" y1="73.93" x2="17.59" y2="72.24"/><line x1="25.60" y1="65.50" x2="22.14" y2="63.50"/><line x1="30.71" y1="57.48" x2="27.44" y2="55.19"/><line x1="36.50" y1="49.94" x2="31.14" y2="45.44" class="l"/><line x1="42.93" y1="42.93" x2="40.10" y2="40.10"/><line x1="49.94" y1="36.50" x2="47.37" y2="33.44"/><line x1="57.48" y1="30.71" x2="55.19" y2="27.44"/><line x1="65.50" y1="25.60" x2="62.00" y2="19.54" class="l"/><line x1="73.93" y1="21.21" x2="72.24" y2="17.59"/><line x1="82.72" y1="17.57" x2="81.35" y2="13.81"/><line x1="91.79" y1="14.71" x2="90.75" y2="10.85"/><line x1="101.07" y1="12.66" x2="99.86" y2="5.76" class="l"/><line x1="110.50" y1="11.41" x2="110.15" y2="7.43"/><line x1="120.00" y1="11.00" x2="120.00" y2="7.00"/><line x1="129.50" y1="11.41" x2="129.85" y2="7.43"/><line x1="138.93" y1="12.66" x2="140.14" y2="5.76" class="l"/><line x1="148.21" y1="14.71" x2="149.25" y2="10.85"/><line x1="157.28" y1="17.57" x2="158.65" y2="13.81"/><line x1="166.07" y1="21.21" x2="167.76" y2="17.59"/><line x1="174.50" y1="25.60" x2="178.00" y2="19.54" class="l"/><line x1="182.52" y1="30.71" x2="184.81" y2="27.44"/><line x1="190.06" y1="36.50" x2="192.63" y2="33.44"/><line x1="197.07" y1="42.93" x2="199.90" y2="40.10"/><line x1="203.50" y1="49.94" x2="208.86" y2="45.44" class="l"/><line x1="209.29" y1="57.48" x2="212.56" y2="55.19"/><line x1="214.40" y1="65.50" x2="217.86" y2="63.50"/><line x1="218.79" y1="73.93" x2="222.41" y2="72.24"/><line x1="222.43" y1="82.72" x2="229.00" y2="80.33" class="l"/><line x1="225.29" y1="91.79" x2="229.15" y2="90.75"/><line x1="227.34" y1="101.07" x2="231.28" y2="100.38"/><line x1="228.59" y1="110.50" x2="232.57" y2="110.15"/><line x1="229.00" y1="120.00" x2="236.00" y2="120.00" class="l"/><line x1="228.59" y1="129.50" x2="232.57" y2="129.85"/><line x1="227.34" y1="138.93" x2="231.28" y2="139.62"/><line x1="225.29" y1="148.21" x2="229.15" y2="149.25"/><line x1="222.43" y1="157.28" x2="229.00" y2="159.67" class="l"/></g>
+              <path class="gutter" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round"/>
+              <path class="track" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round"/>
+              <path class="fill" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="0.500" style="stroke:url(#arcGrad-demo)"/>
+              <path class="sheen" d="M27.16 153.79 A98.8 98.8 0 1 1 212.84 153.79" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="0.515"/>
+              <path class="glow-all" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round"/>
+              <path class="sweep" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="0 2"/>
+              <circle class="tip" r="18" cx="120" cy="24" style="fill:url(#tipGrad-demo)"/>
+            </svg>
+            <div class="arc2-num">7</div>
+            <div class="arc2-label">days in a row</div>
+          </div>
+          <div class="planner">
+            <div class="daytab" aria-hidden="true"><b>SAT</b><small>Nov<br>21</small></div>
+            <div class="comp is-done" aria-hidden="true" style="--lid:#8DAA74">
+              <span class="comp-box"><span class="well"></span><span class="lid2" style="--open:1"></span></span>
+              <span class="comp-time">7:00 AM</span>
+            </div>
+            <div class="comp is-current" style="--lid:#8DAA74">
+              <button class="comp-box" type="button" id="demoComp"><span class="visually-hidden">Take the 9:00 PM compartment: Metformin 500 mg</span><span class="well" aria-hidden="true"></span><i class="p drop" style="left:44%;bottom:12px;--r:20deg;--d:500ms" aria-hidden="true"></i><span class="check" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></span><span class="lid2" aria-hidden="true"></span></button>
+              <span class="comp-time" aria-hidden="true">9:00 PM</span>
+            </div>
+          </div>
+          <div class="t2-hint" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-hand-draw"/></svg>Swipe a compartment up to take it</div>
+          <div class="sheet2" aria-hidden="true">
+            <div class="grabber"></div>
+            <div class="due">
+              <div class="due-head swap"><span class="before">Due now · 9:00 PM <span class="count">1 of 2</span></span><span class="after">All done for today <span class="count">2 of 2</span></span></div>
+              <div class="due-row"><i class="dot" style="background:#8DAA74"></i><div><div class="med">Metformin<small>500 mg</small></div><div class="sub">1 tablet · with food</div></div><span class="swap"><span class="ochip due before"><i></i>Now</span><span class="ochip ok after"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg>9:02 PM</span></span></div>
+            </div>
+            <div class="day-title"><b>My day</b><span>2 doses</span></div>
+            <div class="log-row"><span class="time">7:00 AM</span><div><div class="med">L-Thyroxin<small>50 µg</small></div><div class="sub">1 tablet · on an empty stomach</div></div><span class="ochip ok"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg>7:03 AM</span></div>
+          </div>
+          <div class="tabbar" aria-hidden="true">
+            <div class="tabs"><span class="tab is-active"><svg><use href="../assets/img/icons.svg?v=4f896641#i-sun"/></svg>Today</span><span class="tab"><svg><use href="../assets/img/icons.svg?v=4f896641#i-bars"/></svg>History</span><span class="tab"><svg><use href="../assets/img/icons.svg?v=4f896641#i-box"/></svg>Supply</span></div>
+            <span class="tab-plus"><svg><use href="../assets/img/icons.svg?v=4f896641#i-plus"/></svg></span>
+          </div>
+          <div class="home-ind" aria-hidden="true"></div>
+          <div class="fly-layer" aria-hidden="true"></div>
+          <svg class="ghost-hand" id="ghostHand" aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-hand-draw"/></svg>
+        </div>
+      </div>
+      <p class="visually-hidden" role="status" id="demoStatus"></p>
     </div>
   </div>
 </section>
 
-<section class="section" id="features" aria-labelledby="f-title">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="f-title">Three things Dosano does really well.</h2>
-      <p>Remind, log, restock. No clutter, no guilt, just a calm view of your day.</p>
-    </div>
-    <ul class="more-list">
-      <li><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-bell"/></svg></span><strong>Reminds you right on time</strong><span>One notification for everything due together, repeated if you haven’t checked it off, with a Live Activity on the Lock Screen.</span></li>
-      <li><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-calendar"/></svg></span><strong>Logs every dose</strong><span>Taken, late or skipped, with the time. The history calendar shows your month at a glance.</span></li>
-      <li><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-box"/></svg></span><strong>Watches your supply</strong><span>Knows how long each pack lasts and tells you before it runs out. Scan a pack to restock in a tap.</span></li>
-      <li><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-widget"/></svg></span><strong>Widgets, Siri and Shortcuts</strong><span>Your pill organizer on the Home and Lock Screen. “Pills taken in Dosano”, done.</span></li>
-    </ul>
-    <a class="store-link" href="https://apps.apple.com/app/dosano/id0000000000" data-store>Download on the App Store<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+<!-- Reminders --------------------------------------------------------->
+<section class="n-section" id="erinnern" aria-labelledby="r-title">
+  <div class="wrap split">
+    <div class="reveal">
+      <h2 id="r-title">Reminds you right when it’s time.</h2>
+      <p class="lead2">One notification for everything that’s due. Plus a Live Activity on the Lock Screen and in the Dynamic Island, with a countdown. Check it off right there, without opening the app.</p>
+      <ul class="ticks2">
+        <li>Not checked off yet? The reminder comes back up to three times.</li>
+        <li>“Later” suggests sensible times: in 30 minutes, this evening, before bed.</li>
+        <li>Three styles to choose from: Compact, With progress or Large.</li>
+      </ul>
+      <a class="store-link" href="https://apps.apple.com/app/dosano/id0000000000" data-store>Download on the App Store<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
 <a class="store-link" href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks" data-prelaunch>Remind me at launch<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+    </div>
+    <div class="stage-dark reveal" style="--delay:120ms" id="lockStage">
+      <div class="bd" data-bd="moss" aria-hidden="true"></div>
+      <div class="lock-time" aria-hidden="true"><small>Saturday, November 21</small><b id="lockClock">8:48</b></div>
+      <div class="la-switch" role="group" aria-label="Live Activity style">
+        <button type="button" data-v="compact" aria-pressed="false">Compact</button>
+        <button type="button" data-v="progress" aria-pressed="false">With progress</button>
+        <button type="button" data-v="large" aria-pressed="true">Large</button>
+      </div>
+      <p class="la-desc" id="laDesc" aria-live="polite">With a large countdown, progress bar and wide buttons.</p>
+      <div class="la" id="la" data-variant="large" role="group" aria-label="Example of a Live Activity">
+        <div class="la-variant v-compact">
+          <div class="la-row">
+            <span class="la-icon" aria-hidden="true"><span class="well"></span><i class="p"></i><span class="lid2"></span></span>
+            <div class="la-text"><div class="la-name">Metformin 500 mg</div><div class="la-detail"><span data-cd>12:00</span> left · 1 tablet</div></div>
+            <div class="la-round"><button type="button" data-act="later" aria-label="Later"><svg><use href="../assets/img/icons.svg?v=4f896641#i-snooze"/></svg></button><button type="button" class="take" data-act="take" aria-label="Taken"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></button></div>
+          </div>
+        </div>
+        <div class="la-variant v-progress">
+          <div class="la-row">
+            <span class="la-icon" aria-hidden="true"><span class="well"></span><i class="p"></i><span class="lid2"></span></span>
+            <div class="la-text"><div class="la-name">Metformin 500 mg</div><div class="la-detail"><span data-cd>12:00</span> left · 1 tablet</div></div>
+            <div class="la-round"><button type="button" data-act="later" aria-label="Later"><svg><use href="../assets/img/icons.svg?v=4f896641#i-snooze"/></svg></button><button type="button" class="take" data-act="take" aria-label="Taken"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></button></div>
+          </div>
+          <div class="slotdots" aria-hidden="true"><i class="t"></i><i class="o"></i><span>Today 1 of 2</span></div>
+        </div>
+        <div class="la-variant v-large">
+          <div class="la-row">
+            <span class="la-icon" aria-hidden="true" style="width:58px;height:54px"><span class="well"></span><i class="p"></i><span class="lid2"></span></span>
+            <div class="la-text"><div class="la-small">Due at 9:00 PM</div><div class="la-name">Metformin 500 mg</div><div class="la-detail">1 tablet · with food</div></div>
+            <div class="la-count"><small>left</small><b data-cd>12:00</b></div>
+          </div>
+          <div class="la-bar" aria-hidden="true"><i id="laBar"></i></div>
+          <div class="la-btns"><button type="button" class="take" data-act="take"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg>Taken</button><button type="button" data-act="later">Later</button></div>
+        </div>
+        <div class="done-msg"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-check"/></svg>Done. See you tomorrow morning!</div>
+      </div>
+      <p class="visually-hidden" role="status" id="laStatus"></p>
+    </div>
   </div>
 </section>
 
-<section class="section privacy-band" id="privacy" aria-labelledby="p-title">
+<!-- Widgets --------------------------------------------------------->
+<section class="n-section gallery-band" id="widgets" aria-labelledby="w-title">
+  <div class="wrap split flip">
+    <div class="reveal">
+      <h2 id="w-title">Your pill organizer, right on your Home Screen.</h2>
+      <p class="lead2">Widgets in three sizes and for the Lock Screen. Check off the next dose right in the widget, and all the others update instantly. Try tapping “Taken”.</p>
+      <ul class="ticks2">
+        <li>A pill organizer with compartments, just like in the app.</li>
+        <li>Supply: one medication, or always the one that runs out next.</li>
+        <li>Discreet: no names on the Lock Screen, if you like.</li>
+      </ul>
+      <a class="store-link" href="https://apps.apple.com/app/dosano/id0000000000" data-store>Download on the App Store<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+<a class="store-link" href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks" data-prelaunch>Remind me at launch<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+    </div>
+    <div class="phone reveal" style="--delay:120ms">
+      <div class="screen homescreen" id="home" role="group" aria-label="Example: Dosano widgets on the Home Screen">
+        <div class="hs-wall" aria-hidden="true"></div>
+        <div class="island" aria-hidden="true"></div>
+        <div class="statusbar" aria-hidden="true" style="color:#fff"><span>9:02</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="../assets/img/icons.svg?v=4f896641#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="../assets/img/icons.svg?v=4f896641#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="../assets/img/icons.svg?v=4f896641#i-battery"/></svg></span></div>
+        <div class="hs-grid">
+          <div class="hs-cell">
+            <div class="wg" role="img" aria-label="Supply widget: Ibuprofen 400 mg is empty, 0 tablets left">
+              <div class="wg-top"><span class="wg-label red"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-cart"/></svg>Empty</span><i class="p white wg-pill"></i></div>
+              <div class="wg-fill"></div>
+              <div class="wg-name">Ibuprofen 400 mg</div>
+              <div class="wg-big red">0</div>
+              <div class="wg-sub" style="margin-bottom:calc(var(--u) * 8)">0 tablets left</div>
+              <div class="wg-bar h8"><i class="empty" style="--r:0"></i></div>
+            </div>
+            <span class="hs-label">Dosano</span>
+          </div>
+          <div class="hs-cell">
+            <div class="wg" data-w="next">
+              <div class="wg-head"><b data-next-head>Up next</b><span data-count>1/2</span></div>
+              <div class="wg-next" data-next-body>
+                <div class="wg-nextrow"><span class="sc is-current wg-c50" style="--h:46;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><i class="p"></i><span class="sc-check"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></span><span class="sc-lid"></span></span><div><div class="wg-when">Now · 9:00 PM</div><div class="wg-sub2">1 tablet</div></div></div>
+                <div class="wg-title">Metformin 500 mg</div>
+                <div class="wg-fill"></div>
+                <button class="wg-btn full" type="button" data-take aria-label="Mark Metformin 500 mg as taken"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg><span>Taken</span></button>
+              </div>
+              <div class="wg-done" data-next-done hidden>
+                <div class="wg-fill"></div>
+                <span class="wg-badge"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></span>
+                <div class="wg-donetitle">All done</div>
+                <div class="wg-sub">2/2 taken</div>
+              </div>
+            </div>
+            <span class="hs-label">Dosano</span>
+          </div>
+          <div class="hs-cell">
+            <div class="wg" role="img" aria-label="Pill organizer widget: 7:00 AM done, 9:00 PM open" data-w="planner">
+              <div class="wg-head small"><b>Today</b><span data-count>1/2</span></div>
+              <div class="wg-pgrid">
+                <div class="wg-slot"><span class="sc is-open" style="--h:40;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><span class="sc-check"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></span><span class="sc-lid"></span></span><span class="wg-time">7:00 AM</span></div>
+                <div class="wg-slot current" data-evening><span class="sc is-current" style="--h:40;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><i class="p"></i><span class="sc-check"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></span><span class="sc-lid"></span></span><span class="wg-time">9:00 PM</span></div>
+              </div>
+            </div>
+            <span class="hs-label">Dosano</span>
+          </div>
+          <div class="hs-cell">
+            <div class="wg" role="img" aria-label="Supply overview widget: Ibuprofen empty, Metformin 5 days left, Vitamin D3 38 days left, L-Thyroxin 64 days left">
+              <div class="wg-head small"><b>Supply</b><svg class="wg-warn" aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-warn"/></svg></div>
+              <div class="wg-list">
+                <div><i class="p white"></i><span>Ibuprofen 400 mg</span><b class="red">0</b><span class="wg-bar h4"><i class="empty" style="--r:0"></i></span></div>
+                <div><i class="p"></i><span>Metformin 500 mg</span><b class="orange">5 d</b><span class="wg-bar h4"><i class="low" style="--r:0.05"></i></span></div>
+                <div><i class="p yellow"></i><span>Vitamin D3 1000 IU</span><b>38 d</b><span class="wg-bar h4"><i style="--r:0.63"></i></span></div>
+                <div><i class="p teal"></i><span>L-Thyroxin 50 µg</span><b>64 d</b><span class="wg-bar h4"><i style="--r:0.64"></i></span></div>
+              </div>
+            </div>
+            <span class="hs-label">Dosano</span>
+          </div>
+          <div class="hs-cell wide">
+            <div class="wg wide" data-w="medium">
+              <div class="wg-head"><b class="b15">Today</b><span class="semi" data-count-long>1/2 taken</span></div>
+              <div class="sstrip" aria-hidden="true">
+                <div class="wg-slot"><span class="sc is-open" style="--h:44;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><span class="sc-check"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></span><span class="sc-lid"></span></span><span class="wg-time">7:00 AM</span></div>
+                <div class="wg-slot current" data-evening><span class="sc is-current" style="--h:44;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><i class="p"></i><span class="sc-check"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></span><span class="sc-lid"></span></span><span class="wg-time">9:00 PM</span></div>
+              </div>
+              <div class="wg-fill"></div>
+              <div class="wg-medrow" data-next-body>
+                <div class="wg-medtext"><div class="wg-when small">Now · 9:00 PM</div><div class="wg-title b15">Metformin 500 mg</div></div>
+                <button class="wg-btn" type="button" data-take aria-label="Mark Metformin 500 mg as taken"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg><span>Taken</span></button>
+              </div>
+              <div class="wg-allempty" data-next-done hidden><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-check"/></svg>All compartments are empty. See you tomorrow!</div>
+            </div>
+            <span class="hs-label">Dosano</span>
+          </div>
+        </div>
+        <div class="home-ind light" aria-hidden="true"></div>
+        <p class="visually-hidden" role="status" id="wStatus"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- History ----------------------------------------------------------->
+<section class="n-section" id="verlauf" aria-labelledby="v-title">
+  <div class="wrap split">
+    <div class="reveal">
+      <h2 id="v-title">Keeps the log, so you don’t have to.</h2>
+      <p class="lead2">Every dose lands in the log: taken, late or skipped, with the time. The calendar shows you the whole month at a glance. Tap a day to take a look.</p>
+      <ul class="ticks2">
+        <li>Forgot to log it? Change it afterwards, with the right time.</li>
+        <li>A red exclamation mark shows from which day your supply won’t last.</li>
+        <li>Handy for your next doctor’s appointment.</li>
+      </ul>
+      <a class="store-link" href="https://apps.apple.com/app/dosano/id0000000000" data-store>Download on the App Store<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+<a class="store-link" href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks" data-prelaunch>Remind me at launch<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+    </div>
+    <div class="phone reveal" style="--delay:120ms">
+      <div class="screen hist" id="cal">
+        <div class="island" aria-hidden="true"></div>
+        <div class="statusbar" aria-hidden="true"><span>9:02</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="../assets/img/icons.svg?v=4f896641#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="../assets/img/icons.svg?v=4f896641#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="../assets/img/icons.svg?v=4f896641#i-battery"/></svg></span></div>
+        <div class="faint" aria-hidden="true"></div>
+        <div class="h-top" aria-hidden="true"><div class="h-title">History</div></div>
+        <div class="h-card">
+          <div class="h-head" aria-hidden="true"><span class="h-nav"><svg><use href="../assets/img/icons.svg?v=4f896641#i-chev-left"/></svg></span><div><b>November 2026</b><small>This month</small></div><span class="h-nav"><svg><use href="../assets/img/icons.svg?v=4f896641#i-chev-right"/></svg></span></div>
+          <div class="h-grid" id="calGrid" role="group" aria-label="Calendar November 2026">
+            <span class="wd" aria-hidden="true">Mo</span><span class="wd" aria-hidden="true">Tu</span><span class="wd" aria-hidden="true">We</span><span class="wd" aria-hidden="true">Th</span><span class="wd" aria-hidden="true">Fr</span><span class="wd" aria-hidden="true">Sa</span><span class="wd" aria-hidden="true">Su</span>
+          </div>
+          <div class="h-legend" aria-hidden="true"><div><span><i style="background:var(--accent)"></i>On time</span><span><i style="background:var(--accent-soft)"></i>Late</span><span><i style="background:var(--amber-soft)"></i>Partly</span><span><i style="background:var(--red-soft)"></i>Missed</span></div><div><span><i class="short-mark"></i>Not enough supply</span></div></div>
+        </div>
+        <div class="h-stats" id="stats"><div><b class="g" data-to="39" data-suffix="/40">0/40</b><span>Taken</span></div><div><b class="g" data-to="95" data-suffix="%">0%</b><span>On time</span></div><div><b class="r" data-to="1" data-suffix="">0</b><span>Skipped</span></div></div>
+        <div class="h-day" id="dayLog" aria-live="polite"></div>
+        <div class="tabbar" aria-hidden="true">
+          <div class="tabs"><span class="tab"><svg><use href="../assets/img/icons.svg?v=4f896641#i-sun"/></svg>Today</span><span class="tab is-active"><svg><use href="../assets/img/icons.svg?v=4f896641#i-bars"/></svg>History</span><span class="tab"><svg><use href="../assets/img/icons.svg?v=4f896641#i-box"/></svg>Supply</span></div>
+          <span class="tab-plus"><svg><use href="../assets/img/icons.svg?v=4f896641#i-plus"/></svg></span>
+        </div>
+        <div class="home-ind" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Supply ----------------------------------------------------------->
+<section class="n-section gallery-band" id="bestand" aria-labelledby="b-title">
+  <div class="wrap split flip">
+    <div class="reveal">
+      <h2 id="b-title">Tells you before the package runs out.</h2>
+      <p class="lead2">Dosano keeps track of how long your supply will last and lets you know in good time. Bought more? One tap and your supply is up to date. Try it: tap “Bought more” next to Metformin.</p>
+      <ul class="ticks2">
+        <li>Scan the package: name, strength and package size are read from the box, right on your iPhone.</li>
+        <li>Dosano remembers the package size for next time.</li>
+        <li>Courses with an end date, including a note on whether the package will last that long.</li>
+      </ul>
+      <a class="store-link" href="https://apps.apple.com/app/dosano/id0000000000" data-store>Download on the App Store<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+<a class="store-link" href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks" data-prelaunch>Remind me at launch<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+    </div>
+    <div class="phone-wrap reveal" style="--delay:120ms">
+      <div class="phone">
+        <div class="screen stockscr" id="stock">
+          <div class="faint" aria-hidden="true"></div>
+          <div class="island" aria-hidden="true"></div>
+          <div class="statusbar" aria-hidden="true"><span>9:02</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="../assets/img/icons.svg?v=4f896641#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="../assets/img/icons.svg?v=4f896641#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="../assets/img/icons.svg?v=4f896641#i-battery"/></svg></span></div>
+          <div class="st-head" aria-hidden="true">
+            <div><div class="st-title">Supply</div><div class="st-count" id="stCount">4 medications</div></div>
+            <div class="st-btns"><span class="gbtn"><svg><use href="../assets/img/icons.svg?v=4f896641#i-sort"/></svg></span><span class="gbtn"><svg><use href="../assets/img/icons.svg?v=4f896641#i-scan"/></svg></span></div>
+          </div>
+          <div class="st-card">
+            <div class="st-sum" id="stSum"></div>
+            <div class="vials" id="vials" aria-hidden="true"></div>
+          </div>
+          <div class="st-listtitle" aria-hidden="true">Medications</div>
+          <div class="st-list" id="stList"></div>
+          <div class="tabbar" aria-hidden="true">
+          <div class="tabs"><span class="tab"><svg><use href="../assets/img/icons.svg?v=4f896641#i-sun"/></svg>Today</span><span class="tab"><svg><use href="../assets/img/icons.svg?v=4f896641#i-bars"/></svg>History</span><span class="tab is-active"><svg><use href="../assets/img/icons.svg?v=4f896641#i-box"/></svg>Supply</span></div>
+          <span class="tab-plus"><svg><use href="../assets/img/icons.svg?v=4f896641#i-plus"/></svg></span>
+        </div>
+        <div class="home-ind" aria-hidden="true"></div>
+          <div class="sheet-dim" id="sheetDim" aria-hidden="true"></div>
+          <div class="rsheet" id="rsheet" role="dialog" aria-modal="true" aria-labelledby="rsTitle" hidden>
+            <div class="rs-nav"><button type="button" class="gbtn" id="rsClose" aria-label="Cancel"><svg><use href="../assets/img/icons.svg?v=4f896641#i-xmark"/></svg></button><b id="rsTitle">Bought a package</b><span></span></div>
+            <div class="rs-body">
+              <div class="rs-card rs-headcard"><span class="rs-badge" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-pills"/></svg></span><div><div class="rs-name" id="rsName"></div><div class="rs-now" id="rsNow"></div></div></div>
+              <div class="rs-card"><div class="rs-ctitle">How many were added?</div>
+                <div class="rs-amount"><span class="rs-input" id="rsAmount" aria-live="polite">100</span><span class="rs-unit">tablets</span></div>
+                <div class="rs-chips" id="rsChips" role="group" aria-label="Choose an amount"></div>
+              </div>
+              <div class="rs-card"><div class="rs-ctitle">After</div>
+                <div class="rs-after"><b id="rsAfter"></b><span id="rsDays"></span></div>
+                <div class="wg-bar h8 paper"><i id="rsBar"></i></div>
+              </div>
+            </div>
+            <div class="rs-bottom"><button type="button" class="rs-go" id="rsGo"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-box-fill"/></svg><span id="rsGoText">Add 100 tablets</span></button></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-after"><button class="btn btn-small btn-quiet2" type="button" id="stockReset" hidden>Try it again</button></div>
+      <p class="visually-hidden" role="status" id="refillStatus"></p>
+    </div>
+  </div>
+</section>
+
+<!-- Your look --------------------------------------------------->
+<section class="n-section" id="dein-look" aria-labelledby="c-title">
+  <div class="wrap custom">
+    <div class="phone reveal" aria-hidden="true">
+      <div class="screen today2 custom-screen" id="customScreen" style="background:#050D07">
+        <div class="bd" data-bd="moss"></div>
+        <div class="island"></div>
+        <div class="statusbar" style="color:#fff"><span>9:41</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="../assets/img/icons.svg?v=4f896641#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="../assets/img/icons.svg?v=4f896641#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="../assets/img/icons.svg?v=4f896641#i-battery"/></svg></span></div>
+        <div class="t2-head" aria-hidden="true">
+            <div><div class="t2-kicker">Today · Saturday</div><div class="t2-date">November 21</div></div>
+            <span class="t2-gear"><svg><use href="../assets/img/icons.svg?v=4f896641#i-gear-fill"/></svg></span>
+          </div>
+          <div class="arc2" aria-hidden="true" data-arc="custom" data-shown="0.5">
+            <svg viewBox="0 0 240 172">
+              <defs>
+                <linearGradient id="arcGrad-custom" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5FB878"/><stop offset="1" stop-color="#74D68E"/></linearGradient>
+                <radialGradient id="tipGrad-custom"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#74D68E" stop-opacity="0"/></radialGradient>
+              </defs>
+              <g class="ticks"><line x1="17.57" y1="157.28" x2="11.00" y2="159.67" class="l"/><line x1="14.71" y1="148.21" x2="10.85" y2="149.25"/><line x1="12.66" y1="138.93" x2="8.72" y2="139.62"/><line x1="11.41" y1="129.50" x2="7.43" y2="129.85"/><line x1="11.00" y1="120.00" x2="4.00" y2="120.00" class="l"/><line x1="11.41" y1="110.50" x2="7.43" y2="110.15"/><line x1="12.66" y1="101.07" x2="8.72" y2="100.38"/><line x1="14.71" y1="91.79" x2="10.85" y2="90.75"/><line x1="17.57" y1="82.72" x2="11.00" y2="80.33" class="l"/><line x1="21.21" y1="73.93" x2="17.59" y2="72.24"/><line x1="25.60" y1="65.50" x2="22.14" y2="63.50"/><line x1="30.71" y1="57.48" x2="27.44" y2="55.19"/><line x1="36.50" y1="49.94" x2="31.14" y2="45.44" class="l"/><line x1="42.93" y1="42.93" x2="40.10" y2="40.10"/><line x1="49.94" y1="36.50" x2="47.37" y2="33.44"/><line x1="57.48" y1="30.71" x2="55.19" y2="27.44"/><line x1="65.50" y1="25.60" x2="62.00" y2="19.54" class="l"/><line x1="73.93" y1="21.21" x2="72.24" y2="17.59"/><line x1="82.72" y1="17.57" x2="81.35" y2="13.81"/><line x1="91.79" y1="14.71" x2="90.75" y2="10.85"/><line x1="101.07" y1="12.66" x2="99.86" y2="5.76" class="l"/><line x1="110.50" y1="11.41" x2="110.15" y2="7.43"/><line x1="120.00" y1="11.00" x2="120.00" y2="7.00"/><line x1="129.50" y1="11.41" x2="129.85" y2="7.43"/><line x1="138.93" y1="12.66" x2="140.14" y2="5.76" class="l"/><line x1="148.21" y1="14.71" x2="149.25" y2="10.85"/><line x1="157.28" y1="17.57" x2="158.65" y2="13.81"/><line x1="166.07" y1="21.21" x2="167.76" y2="17.59"/><line x1="174.50" y1="25.60" x2="178.00" y2="19.54" class="l"/><line x1="182.52" y1="30.71" x2="184.81" y2="27.44"/><line x1="190.06" y1="36.50" x2="192.63" y2="33.44"/><line x1="197.07" y1="42.93" x2="199.90" y2="40.10"/><line x1="203.50" y1="49.94" x2="208.86" y2="45.44" class="l"/><line x1="209.29" y1="57.48" x2="212.56" y2="55.19"/><line x1="214.40" y1="65.50" x2="217.86" y2="63.50"/><line x1="218.79" y1="73.93" x2="222.41" y2="72.24"/><line x1="222.43" y1="82.72" x2="229.00" y2="80.33" class="l"/><line x1="225.29" y1="91.79" x2="229.15" y2="90.75"/><line x1="227.34" y1="101.07" x2="231.28" y2="100.38"/><line x1="228.59" y1="110.50" x2="232.57" y2="110.15"/><line x1="229.00" y1="120.00" x2="236.00" y2="120.00" class="l"/><line x1="228.59" y1="129.50" x2="232.57" y2="129.85"/><line x1="227.34" y1="138.93" x2="231.28" y2="139.62"/><line x1="225.29" y1="148.21" x2="229.15" y2="149.25"/><line x1="222.43" y1="157.28" x2="229.00" y2="159.67" class="l"/></g>
+              <path class="gutter" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round"/>
+              <path class="track" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round"/>
+              <path class="fill" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="0.500" style="stroke:url(#arcGrad-custom)"/>
+              <path class="sheen" d="M27.16 153.79 A98.8 98.8 0 1 1 212.84 153.79" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="0.515"/>
+              <path class="glow-all" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round"/>
+              <path class="sweep" d="M29.79 152.83 A96 96 0 1 1 210.21 152.83" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="0 2"/>
+              <circle class="tip" r="18" cx="120" cy="24" style="fill:url(#tipGrad-custom)"/>
+            </svg>
+            <div class="arc2-num">7</div>
+            <div class="arc2-label">days in a row</div>
+          </div>
+          <div class="planner">
+            <div class="daytab" aria-hidden="true"><b>SAT</b><small>Nov<br>21</small></div>
+            <div class="comp is-done" aria-hidden="true" style="--lid:#8DAA74">
+              <span class="comp-box"><span class="well"></span><span class="lid2" style="--open:1"></span></span>
+              <span class="comp-time">7:00 AM</span>
+            </div>
+            <div class="comp is-current" style="--lid:#8DAA74">
+              <span class="comp-box"><span class="well" aria-hidden="true"></span><i class="p drop" style="left:44%;bottom:12px;--r:20deg;--d:500ms" aria-hidden="true"></i><span class="check" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-tick"/></svg></span><span class="lid2" aria-hidden="true"></span></span>
+              <span class="comp-time" aria-hidden="true">9:00 PM</span>
+            </div>
+          </div>
+          <div class="t2-hint" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-hand-draw"/></svg>Swipe a compartment up to take it</div>
+        <div class="homeicon" id="homeIcon"><span class="ic"><img src="../assets/img/app-icons/default.webp" alt=""></span><span>Dosano</span></div>
+      </div>
+    </div>
+    <div class="picker reveal" style="--delay:120ms">
+      <h2 class="h2" id="c-title" style="font-size:clamp(2rem,4.2vw,3.2rem)">Make Dosano yours.</h2>
+      <p class="lead2" style="margin-top:18px;font-size:1.12rem;color:var(--ink-2);max-width:32em">More than 40 backgrounds for “Today”, from gradients and patterns to real materials like leather, linen or marble. Plus 18 app icons, and for every medication the look of its pill: 16 shapes, 24 colors.</p>
+      <h3 id="bdLabel">Background</h3>
+      <ul class="swatches" id="bdPicker" aria-labelledby="bdLabel"></ul>
+      <h3 id="icLabel">App icon</h3>
+      <ul class="swatches icons" id="icPicker" aria-labelledby="icLabel"></ul>
+      <p class="picked" id="picked" aria-live="polite">Background: Moss · Icon: Automatic</p>
+      <a class="store-link" href="https://apps.apple.com/app/dosano/id0000000000" data-store>Download on the App Store<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+<a class="store-link" href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks" data-prelaunch>Remind me at launch<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- More features ---------------------------------------------------->
+<section class="n-section gallery-band" aria-labelledby="m-title" style="padding-top:clamp(64px,8vw,110px)">
+  <div class="wrap more" style="margin-top:0">
+    <h2 class="h2 reveal" id="m-title" style="font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:28px">And Dosano thought of the little things, too.</h2>
+    <ul class="more-list stagger" id="moreList">
+      <li style="--i:0"><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-siri"/></svg></span><strong>Siri and Shortcuts</strong><span>Just say “Took my pills in Dosano” and it’s logged. Also via the Action button.</span></li>
+      <li style="--i:1"><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-scan"/></svg></span><strong>Scan package</strong><span>Reads name, strength, form and package size, entirely on your device.</span></li>
+      <li style="--i:2"><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-hand"/></svg></span><strong>As needed</strong><span>Log medications without fixed times with a single tap.</span></li>
+      <li style="--i:3"><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-calendar"/></svg></span><strong>Course with end date</strong><span>For antibiotics: after the last day, the reminders stop.</span></li>
+      <li style="--i:4"><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-globe"/></svg></span><strong>Travel</strong><span>Follow local time or keep your usual rhythm from home, for example for the pill.</span></li>
+      <li style="--i:5"><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-eye-off"/></svg></span><strong>Discreet</strong><span>Notifications and the Lock Screen show no names, if you like.</span></li>
+      <li style="--i:6"><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-photo"/></svg></span><strong>Notes and photos</strong><span>Keep the package or leaflet at hand, stored only on your iPhone.</span></li>
+      <li style="--i:7"><span class="ico" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-repeat"/></svg></span><strong>Repeat reminder</strong><span>Every 10, 15, 30 or 60 minutes, at most three times and never after midnight.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Privacy ------------------------------------------------------->
+<section class="section privacy-band" id="datenschutz" aria-labelledby="p-title">
   <div class="wrap">
+    <svg class="shield" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 6 52 13v17c0 13-8.6 23-20 28C20.6 53 12 43 12 30V13Z"/><path class="tick" d="m22 32 7 7 13-14"/></svg>
     <h2 class="h2" id="p-title">What you take is nobody’s business. Not even ours.</h2>
     <p class="lead">Dosano has no server, no account and no tracking. Your medications, doses and photos stay on your iPhone, and only there.</p>
-    <p style="margin-top:28px"><a href="../datenschutz.html" hreflang="de">Privacy policy (German)</a></p>
+    <ul class="promises stagger" id="promises">
+      <li style="--i:0"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-user-off"/></svg><div><strong>No account, no sign-up</strong><span>Open the app and get started. We don’t even know who you are.</span></div></li>
+      <li style="--i:1"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-cloud-off"/></svg><div><strong>No server, no cloud of ours</strong><span>Everything is stored on your iPhone. There’s nothing for us to upload.</span></div></li>
+      <li style="--i:2"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-eye-off"/></svg><div><strong>No ads, no analytics</strong><span>No trackers, no advertising IDs, no analytics services in the app.</span></div></li>
+      <li style="--i:3"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-scan"/></svg><div><strong>Scans and photos stay local</strong><span>The camera reads packages right on the device. Photos never leave your iPhone.</span></div></li>
+    </ul>
+    <p style="margin-top:28px"><a href="privacy.html">Read the privacy policy</a></p>
     <a class="store-link" href="https://apps.apple.com/app/dosano/id0000000000" data-store>Download on the App Store<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
 <a class="store-link" href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks" data-prelaunch>Remind me at launch<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
   </div>
 </section>
 
-<section class="section download" aria-labelledby="d-title">
-  <div class="wrap">
-    <h2 id="d-title">Tomorrow morning, you’ll just know.</h2>
-    <a class="btn btn-primary" href="https://apps.apple.com/app/dosano/id0000000000" data-store><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-store"/></svg>Download on the App Store</a>
-<a class="btn btn-primary" href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks" data-prelaunch><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-bell"/></svg>Remind me at launch</a>
-    <div class="notice" role="note">
-      <svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-info"/></svg>
-      <p><strong>Important:</strong> Dosano is not a medical device and does not replace advice from a doctor or pharmacist. Only take medication as prescribed or recommended. In an emergency, call your local emergency number.</p>
+<!-- FAQ -->
+<section class="section" id="fragen" aria-labelledby="q-title">
+  <div class="wrap faq-grid">
+    <div class="section-head">
+      <h2 id="q-title">FAQ</h2>
+      <p>Your question isn’t here? Write to us, we’re happy to help.</p>
+      <a class="store-link" href="support.html" style="margin-top:20px">Go to support<svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-arrow"/></svg></a>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>How much does Dosano cost?<span class="chev" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Dosano is offered as a subscription on the App Store. You’ll see the current price in the App Store before you buy. You can cancel at any time in your iPhone’s Settings: tap your name, then “Subscriptions”.</p></div>
+      </details>
+      <details>
+        <summary>Do I need an account?<span class="chev" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>No. Dosano works without sign-up, without an email address and without an account.</p></div>
+      </details>
+      <details>
+        <summary>Where is my data stored?<span class="chev" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Only on your iPhone. Widgets and the Live Activity read the same data, also on the device. We don’t run a server and never see any of it.</p><p>If you back up your iPhone via iCloud or your computer, the data is part of that backup.</p></div>
+      </details>
+      <details>
+        <summary>What happens if I miss a dose?<span class="chev" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>If you like, Dosano reminds you up to three more times. If you took it and just didn’t check it off, you can log it afterwards with the right time. Whether you should make up a missed dose is something to discuss with your doctor or pharmacist.</p></div>
+      </details>
+      <details>
+        <summary>Which devices are supported?<span class="chev" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Dosano runs on iPhone with iOS 26 or later. There’s no Apple Watch version and no Apple Health integration yet.</p></div>
+      </details>
+      <details>
+        <summary>Does Dosano replace medical advice?<span class="chev" aria-hidden="true"><svg><use href="../assets/img/icons.svg?v=4f896641#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>No. Dosano is not a medical device but a reminder and note-taking aid. Please discuss which medications to take, when and how much with your doctor or pharmacist.</p></div>
+      </details>
     </div>
   </div>
 </section>
+
+<!-- Download -->
+<section class="section download" id="laden" aria-labelledby="d-title">
+  <div class="wrap">
+    <div class="icon-cycle" id="iconCycle" role="img" aria-label="Dosano app icon in different variants">
+      <img class="is-on" src="../assets/img/app-icons/default.webp" alt="" width="120" height="120">
+    </div>
+    <h2 id="d-title">Never wonder again whether you’ve taken it.</h2>
+    <p>Get Dosano, add your first medication or try it with sample data. It takes less than a minute.</p>
+    <div class="dl-actions">
+      <a class="btn btn-primary" href="https://apps.apple.com/app/dosano/id0000000000" data-store><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-store"/></svg>Download on the App Store</a>
+      <a class="btn btn-quiet2" data-remind href="mailto:dosano.help@gmail.com?subject=Reminder%3A%20Dosano%20on%20the%20App%20Store&amp;body=Hi%2C%0A%0Aplease%20send%20me%20a%20short%20email%20as%20soon%20as%20Dosano%20is%20on%20the%20App%20Store.%0AAfter%20that%20you%20can%20delete%20my%20address.%0A%0AThanks"><svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-bell"/></svg>Remind me at launch</a>
+    </div>
+    <p class="hero-note">For iPhone with iOS 26 or later</p>
+    <p class="remind-note" id="erinnerung">Dosano isn’t on the App Store yet. “Remind me at launch” opens a ready-made email that you just need to send. We’ll write to you once as soon as Dosano is available, and then delete your address. If the button doesn’t work, write to <a href="mailto:dosano.help@gmail.com">dosano.help@gmail.com</a> with the subject “Reminder: Dosano on the App Store”.</p>
+    <div class="notice" role="note">
+      <svg aria-hidden="true"><use href="../assets/img/icons.svg?v=4f896641#i-info"/></svg>
+      <p><strong>Important:</strong> Dosano is not a medical device and does not replace advice from a doctor or pharmacist. Only take medication as prescribed or recommended. In an emergency, call your local emergency number (112 in Europe).</p>
+    </div>
+  </div>
+</section>
+
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer n-footer">
   <div class="wrap">
     <div class="footer-grid">
-      <a class="brand" href="./"><img src="../assets/img/logo-96.png" alt="" width="23" height="24">Dosano</a>
+      <a class="brand" href="./" aria-label="Dosano, home"><span class="wordmark"><img class="wm-d" src="../assets/img/logo-96.png" alt="" width="23" height="24"><span class="wm-rest">osano</span></span></a>
       <nav aria-label="Legal and help">
         <ul>
-          <li><a href="../support.html" hreflang="de">Support (German)</a></li>
-          <li><a href="../datenschutz.html" hreflang="de">Privacy (German)</a></li>
-          <li><a href="../impressum.html" hreflang="de">Legal notice (German)</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="legal-notice.html">Legal notice</a></li>
           <li><a href="../" hreflang="de" lang="de">Deutsch</a></li>
         </ul>
       </nav>

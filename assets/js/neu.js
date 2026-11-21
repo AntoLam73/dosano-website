@@ -9,6 +9,11 @@
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
   var iconUse = document.querySelector('use[href*="icons.svg"]');
   var ICONS = iconUse ? iconUse.getAttribute('href').split('#')[0] : 'assets/img/icons.svg';
+  // Sprache der Seite: Englisch unter /en/, sonst Deutsch. Begriffe wie in der englischen App.
+  var EN = (document.documentElement.lang || '').indexOf('en') === 0;
+  function t(de, en) { return EN ? en : de; }
+  // Pfad zur Wurzel der Website ("" oder "../"), aus der Symbol-Datei abgeleitet
+  var BASE = ICONS.split('assets/')[0];
   var EASE_OUT = 'cubic-bezier(0.23, 1, 0.32, 1)';
   var EASE_IN_OUT = 'cubic-bezier(0.77, 0, 0.175, 1)';
   var POP = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
@@ -35,6 +40,10 @@
   var TODAY = new Date(2026, 10, 21);
   function addDays(n) { var d = new Date(TODAY); d.setDate(d.getDate() + n); return d; }
   function shortDate(d) {
+    if (EN) {
+      return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()] + ', ' +
+        ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate();
+    }
     var wd = ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.'][d.getDay()];
     var mo = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'][d.getMonth()];
     return wd + ', ' + d.getDate() + '. ' + mo;
@@ -236,7 +245,7 @@
           demo.classList.add('is-allDone');
           return arc.celebrate(8);
         }).then(function () {
-          status.textContent = 'Metformin als genommen eingetragen. Für heute alles erledigt, 8 Tage in Folge.';
+          status.textContent = t('Metformin als genommen eingetragen. Für heute alles erledigt, 8 Tage in Folge.', 'Metformin logged as taken. All done for today, 8 days in a row.');
           resetBtn.classList.add('is-visible');
           busy = false;
         });
@@ -256,7 +265,7 @@
         arc.set(0.5, false);
         resetBtn.classList.remove('is-visible');
         tryRow.classList.remove('is-done');
-        status.textContent = 'Zurückgesetzt.';
+        status.textContent = t('Zurückgesetzt.', 'Reset.');
         compEl.focus({ preventScroll: true });
       }
 
@@ -322,9 +331,9 @@
     if (lock) {
       var la = $('#la'), laDesc = $('#laDesc'), laStatus = $('#laStatus'), bar = $('#laBar');
       var DESC = {
-        compact: 'Klein wie eine Mitteilung, mit Abhaken und Später.',
-        progress: 'Dazu der Fortschritt des Tages als Kästchen.',
-        large: 'Mit großem Countdown, Fortschrittsbalken und breiten Buttons.'
+        compact: t('Klein wie eine Mitteilung, mit Abhaken und Später.', 'As small as a notification, with check off and Later.'),
+        progress: t('Dazu der Fortschritt des Tages als Kästchen.', "Plus the day's progress as little boxes."),
+        large: t('Mit großem Countdown, Fortschrittsbalken und breiten Buttons.', 'With a large countdown, progress bar and wide buttons.')
       };
       var remaining = 12 * 60, total = 15 * 60, timer = 0;
       function fmt(s) { var m = Math.floor(s / 60), r = s % 60; return m + ':' + (r < 10 ? '0' : '') + r; }
@@ -355,7 +364,7 @@
       });
       function done() {
         morph(function () { la.classList.add('is-done'); });
-        laStatus.textContent = 'Als genommen eingetragen.';
+        laStatus.textContent = t('Als genommen eingetragen.', 'Logged as taken.');
         clearInterval(timer);
         wait(4500).then(function () {
           remaining = 12 * 60; paint();
@@ -365,7 +374,7 @@
       }
       function later() {
         remaining = 15 * 60; paint();
-        laStatus.textContent = 'Erinnerung in 15 Minuten.';
+        laStatus.textContent = t('Erinnerung in 15 Minuten.', 'Reminder in 15 minutes.');
         $$('[data-cd]', la).forEach(function (el) { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); });
       }
       lock.addEventListener('click', function (e) {
@@ -390,14 +399,14 @@
           $('.sc', slot).classList.toggle('is-open', on);
         });
         $$('[data-count]', home).forEach(function (c) { c.textContent = on ? '2/2' : '1/2'; c.classList.remove('pulse-num'); void c.offsetWidth; c.classList.add('pulse-num'); });
-        $$('[data-count-long]', home).forEach(function (c) { c.textContent = on ? '2/2 genommen' : '1/2 genommen'; });
-        $$('[data-next-head]', home).forEach(function (c) { c.textContent = on ? 'Heute' : 'Als Nächstes'; });
+        $$('[data-count-long]', home).forEach(function (c) { c.textContent = on ? t('2/2 genommen', '2/2 taken') : t('1/2 genommen', '1/2 taken'); });
+        $$('[data-next-head]', home).forEach(function (c) { c.textContent = on ? t('Heute', 'Today') : t('Als Nächstes', 'Up next'); });
         $$('[data-next-body]', home).forEach(function (c) { c.hidden = on; });
         $$('[data-next-done]', home).forEach(function (c) {
           c.hidden = !on;
           if (on && !reduce && c.animate) c.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: EASE_OUT });
         });
-        wStatus.textContent = on ? 'Metformin als genommen eingetragen. Alle Widgets zeigen 2 von 2.' : '';
+        wStatus.textContent = on ? t('Metformin als genommen eingetragen. Alle Widgets zeigen 2 von 2.', 'Metformin logged as taken. All widgets show 2 of 2.') : '';
       }
       $$('[data-take]', home).forEach(function (b) { b.addEventListener('click', function () { setW(true); }); });
       // Nach einer Weile wieder zurück, damit man es noch einmal ausprobieren kann.
@@ -415,8 +424,10 @@
       var STATUS = {}; var i;
       for (i = 1; i <= 20; i++) STATUS[i] = 'perfect';
       STATUS[6] = 'allTaken'; STATUS[12] = 'partial'; STATUS[17] = 'allTaken'; STATUS[21] = 'open';
-      var LABEL = { perfect: 'alles pünktlich genommen', allTaken: 'alles genommen, manches verspätet', partial: 'teilweise genommen', open: 'noch offen' };
-      var WD = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+      var LABEL = EN ? { perfect: 'everything taken on time', allTaken: 'everything taken, some late', partial: 'partly taken', open: 'still open' }
+        : { perfect: 'alles pünktlich genommen', allTaken: 'alles genommen, manches verspätet', partial: 'teilweise genommen', open: 'noch offen' };
+      var WD = EN ? ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        : ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
       for (i = 0; i < 6; i++) grid.appendChild(document.createElement('span'));
       for (i = 1; i <= 30; i++) {
         var st = STATUS[i] || 'future', short = i >= 27;
@@ -430,7 +441,7 @@
         cell.appendChild(c);
         if (STATUS[i]) {
           cell.type = 'button';
-          cell.setAttribute('aria-label', (i === 21 ? 'Heute, ' : '') + WD[new Date(2026, 10, i).getDay()] + ', ' + i + '. November: ' + LABEL[st]);
+          cell.setAttribute('aria-label', (i === 21 ? t('Heute, ', 'Today, ') : '') + WD[new Date(2026, 10, i).getDay()] + ', ' + t(i + '. November', 'November ' + i) + ': ' + LABEL[st]);
           cell.setAttribute('aria-pressed', String(i === 21));
           cell.dataset.day = i;
         } else {
@@ -446,15 +457,15 @@
       function showDay(day) {
         var st = STATUS[day];
         var d = new Date(2026, 10, day);
-        var title = (day === 21 ? 'Heute · ' : (day === 20 ? 'Gestern · ' : '')) + WD[d.getDay()] + ', ' + day + '. November';
+        var title = (day === 21 ? t('Heute · ', 'Today · ') : (day === 20 ? t('Gestern · ', 'Yesterday · ') : '')) + WD[d.getDay()] + ', ' + t(day + '. November', 'November ' + day);
         var m1 = 2 + (day * 7) % 8, m2 = 1 + (day * 5) % 8;
-        var a = row('7:00', 'L-Thyroxin', '50 µg', '1 Tablette · nüchtern', chip('ok', 'i-tick', '7:0' + m1));
+        var a = row(t('7:00', '7:00 AM'), 'L-Thyroxin', '50 µg', t('1 Tablette · nüchtern', '1 tablet · on an empty stomach'), chip('ok', 'i-tick', t('7:0' + m1, '7:0' + m1 + ' AM')));
         var b;
-        if (st === 'allTaken') b = row('21:00', 'Metformin', '500 mg', '1 Tablette · zum Essen', chip('late', 'i-clock', '22:1' + m2));
-        else if (st === 'partial') b = row('21:00', 'Metformin', '500 mg', '1 Tablette · zum Essen', chip('skip', 'i-xmark', 'Ausgelassen'));
-        else if (st === 'open') b = row('21:00', 'Metformin', '500 mg', '1 Tablette · zum Essen', chip('open', 'i-circle-dashed', 'Offen'));
-        else b = row('21:00', 'Metformin', '500 mg', '1 Tablette · zum Essen', chip('ok', 'i-tick', '21:0' + m2));
-        var count = (st === 'partial' || st === 'open') ? '1 von 2' : '2 von 2';
+        if (st === 'allTaken') b = row(t('21:00', '9:00 PM'), 'Metformin', '500 mg', t('1 Tablette · zum Essen', '1 tablet · with food'), chip('late', 'i-clock', t('22:1' + m2, '10:1' + m2 + ' PM')));
+        else if (st === 'partial') b = row(t('21:00', '9:00 PM'), 'Metformin', '500 mg', t('1 Tablette · zum Essen', '1 tablet · with food'), chip('skip', 'i-xmark', t('Ausgelassen', 'Skipped')));
+        else if (st === 'open') b = row(t('21:00', '9:00 PM'), 'Metformin', '500 mg', t('1 Tablette · zum Essen', '1 tablet · with food'), chip('open', 'i-circle-dashed', t('Offen', 'Open')));
+        else b = row(t('21:00', '9:00 PM'), 'Metformin', '500 mg', t('1 Tablette · zum Essen', '1 tablet · with food'), chip('ok', 'i-tick', t('21:0' + m2, '9:0' + m2 + ' PM')));
+        var count = (st === 'partial' || st === 'open') ? t('1 von 2', '1 of 2') : t('2 von 2', '2 of 2');
         log.innerHTML = '<div class="h-daycard"><div class="h-dh"><b>' + title + '</b><span>' + count + '</span></div>' + a + b + '</div>';
       }
       grid.addEventListener('click', function (e) {
@@ -480,7 +491,7 @@
       var MEDS = [
         { id: 'ibu', name: 'Ibuprofen', strength: '400 mg', short: 'Ibuprofen', pill: 'white', stock: 0, perDay: 0, pack: 20, low: 5 },
         { id: 'metf', name: 'Metformin', strength: '500 mg', short: 'Metformin', pill: '', stock: 5, perDay: 1, pack: 100, low: 7 },
-        { id: 'vitd', name: 'Vitamin D3', strength: '1000 IE', short: 'Vitamin', pill: 'yellow', stock: 38, perDay: 1, pack: 60, low: 7 },
+        { id: 'vitd', name: 'Vitamin D3', strength: t('1000 IE', '1000 IU'), short: 'Vitamin', pill: 'yellow', stock: 38, perDay: 1, pack: 60, low: 7 },
         { id: 'thyr', name: 'L-Thyroxin', strength: '50 µg', short: 'L-Thyroxin', pill: 'teal', stock: 64, perDay: 1, pack: 100, low: 7 }
       ];
       var START = MEDS.map(function (m) { return m.stock; });
@@ -488,8 +499,9 @@
       function days(m) { return m.perDay ? Math.floor(m.stock / m.perDay) : null; }
       function level(m) { if (m.stock <= 0) return 'empty'; var d = days(m); return (d !== null ? d <= m.low : m.stock <= m.low) ? 'low' : 'ok'; }
       function ratio(m) { return Math.min(1, m.stock / Math.max(m.pack, 1)); }
-      function tage(n) { return n === 1 ? '1 Tag' : n + ' Tage'; }
-      function daysText(m) { var d = days(m); return d === null ? m.stock + ' Tabletten' : 'noch ' + tage(d); }
+      function tage(n) { return n === 1 ? t('1 Tag', '1 day') : n + t(' Tage', ' days'); }
+      function tabs(n) { return n + (n === 1 ? t(' Tablette', ' tablet') : t(' Tabletten', ' tablets')); }
+      function daysText(m) { var d = days(m); return d === null ? tabs(m.stock) : t('noch ' + tage(d), tage(d) + ' left'); }
       function order() {
         return MEDS.slice().sort(function (a, b) {
           function rem(m) { if (m.stock <= 0) return -1; var d = days(m); return d !== null ? d / 30 : m.stock / m.pack; }
@@ -503,21 +515,21 @@
         var next = withDays.reduce(function (a, m) { return !a || days(m) < days(a) ? m : a; }, null);
         var refillCount = meds.filter(function (m) { return level(m) !== 'ok'; }).length;
         var nd = days(next), lv = level(next);
-        var until = 'bis ' + shortDate(addDays(nd)) + ' · ' + next.name + ' ' + next.strength;
-        if (refillCount > 1) until += ' · ' + refillCount + ' werden knapp';
-        sum.innerHTML = '<small>Reicht noch</small><b class="' + (lv === 'ok' ? '' : lv) + '">' + tage(nd) + '</b><span>' + until + '</span>';
+        var until = t('bis ', 'until ') + shortDate(addDays(nd)) + ' · ' + next.name + ' ' + next.strength;
+        if (refillCount > 1) until += ' · ' + refillCount + t(' werden knapp', ' running low');
+        sum.innerHTML = '<small>' + t('Reicht noch', 'Lasts') + '</small><b class="' + (lv === 'ok' ? '' : lv) + '">' + tage(nd) + '</b><span>' + until + '</span>';
         vials.innerHTML = meds.map(function (m) {
           var lv2 = level(m), d = days(m);
           var col = lv2 === 'ok' ? 'var(--accent)' : (lv2 === 'low' ? 'var(--amber)' : 'var(--red-fill)');
           return '<div class="vial" data-med="' + m.id + '"><i class="p ' + m.pill + '"></i><span class="vial-body' + (m.stock <= 0 ? ' empty' : '') + '"><i style="--r:' + ratio(m).toFixed(3) + ';--c:' + col + '"></i></span>' +
-            '<b class="' + (lv2 === 'ok' ? '' : lv2) + '">' + (d === null ? m.stock : d + ' T') + '</b><span>' + m.short + '</span></div>';
+            '<b class="' + (lv2 === 'ok' ? '' : lv2) + '">' + (d === null ? m.stock : d + t(' T', ' d')) + '</b><span>' + m.short + '</span></div>';
         }).join('');
         list.innerHTML = meds.map(function (m) {
           var lv2 = level(m);
           return '<div class="srow" data-med="' + m.id + '"><div class="srow-top"><i class="p ' + m.pill + '"></i><span class="srow-name">' + m.name + ' ' + m.strength + '</span>' +
             '<span class="srow-days ' + (lv2 === 'ok' ? '' : lv2) + '">' + daysText(m) + '</span>' + ICO('i-chev-right') + '</div>' +
             '<span class="wg-bar paper"><i class="' + (lv2 === 'ok' ? '' : lv2) + '" style="--r:' + ratio(m).toFixed(3) + '"></i></span>' +
-            '<div class="srow-bottom"><span>' + m.stock + ' Tabletten übrig</span><button type="button" class="rbtn ' + (lv2 === 'ok' ? '' : lv2) + (m.id === 'metf' && !refilledOnce ? ' hint' : '') + '" data-refill="' + m.id + '">' + ICO('i-plus') + 'Nachgekauft</button></div></div>';
+            '<div class="srow-bottom"><span>' + t(tabs(m.stock) + ' übrig', tabs(m.stock) + ' left') + '</span><button type="button" class="rbtn ' + (lv2 === 'ok' ? '' : lv2) + (m.id === 'metf' && !refilledOnce ? ' hint' : '') + '" data-refill="' + m.id + '">' + ICO('i-plus') + t('Nachgekauft', 'Bought more') + '</button></div></div>';
         }).join('');
       }
       var refilledOnce = false;
@@ -531,20 +543,20 @@
         var lvNow = level(cur), dNow = days(cur);
         $('#rsName').innerHTML = cur.name + '<small>' + cur.strength + '</small>';
         var now = $('#rsNow');
-        now.textContent = 'Noch ' + cur.stock + ' Tabletten' + (dNow !== null ? ' · reicht ' + tage(dNow) : '');
+        now.textContent = t('Noch ' + tabs(cur.stock), tabs(cur.stock) + ' left') + (dNow !== null ? t(' · reicht ', ' · lasts ') + tage(dNow) : '');
         now.className = 'rs-now ' + (lvNow === 'ok' ? '' : lvNow);
         amountEl.textContent = amount;
-        $('#rsAfter').textContent = after + ' Tabletten';
-        $('#rsDays').textContent = d !== null ? 'reicht ' + tage(d) : '';
+        $('#rsAfter').textContent = tabs(after);
+        $('#rsDays').textContent = d !== null ? t('reicht ', 'lasts ') + tage(d) : '';
         $('#rsBar').style.setProperty('--r', Math.min(1, after / Math.max(cur.pack, after, 1)).toFixed(3));
-        $('#rsGoText').textContent = amount + ' Tabletten auffüllen';
+        $('#rsGoText').textContent = t(tabs(amount) + ' auffüllen', 'Add ' + tabs(amount));
         $$('button', chips).forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.n === amount)); });
       }
       function openSheet(id) {
         cur = MEDS.filter(function (m) { return m.id === id; })[0];
         amount = cur.pack;
         var sizes = [cur.pack].concat([20, 30, 50, 100].filter(function (n) { return n !== cur.pack; }));
-        chips.innerHTML = sizes.map(function (n) { return '<button type="button" data-n="' + n + '">' + (n === cur.pack ? n + ' · deine Packung' : n) + '</button>'; }).join('');
+        chips.innerHTML = sizes.map(function (n) { return '<button type="button" data-n="' + n + '">' + (n === cur.pack ? n + t(' · deine Packung', ' · your package') : n) + '</button>'; }).join('');
         sheetFill();
         lastFocus = document.activeElement;
         sheet.hidden = false;
@@ -573,7 +585,7 @@
           var row = $('.srow[data-med="' + m.id + '"]', list);
           if (row && !reduce && row.animate) row.animate([{ backgroundColor: 'color-mix(in srgb, var(--accent) 14%, transparent)' }, { backgroundColor: 'transparent' }], { duration: 1400, easing: 'ease-out' });
           $('#stockReset').hidden = false;
-          $('#refillStatus').textContent = m.name + ' aufgefüllt: jetzt ' + m.stock + ' Tabletten' + (m.perDay ? ', reicht ' + tage(days(m)) : '') + '.';
+          $('#refillStatus').textContent = t(m.name + ' aufgefüllt: jetzt ' + tabs(m.stock) + (m.perDay ? ', reicht ' + tage(days(m)) : '') + '.', m.name + ' refilled: now ' + tabs(m.stock) + (m.perDay ? ', lasts ' + tage(days(m)) : '') + '.');
         });
       });
       list.addEventListener('click', function (e) {
@@ -583,22 +595,23 @@
         MEDS.forEach(function (m, n) { m.stock = START[n]; });
         refilledOnce = false; render();
         this.hidden = true;
-        $('#refillStatus').textContent = 'Zurückgesetzt.';
+        $('#refillStatus').textContent = t('Zurückgesetzt.', 'Reset.');
       });
     }
   });
 
   // Personalisieren: Hintergründe und App-Symbole ------------------------
   safe(function () {
+    // Namen wie in der App (Deutsch / Englisch)
     var BDS = [
-      ['moss', 'Moos'], ['deepSea', 'Tiefsee'], ['dusk', 'Dämmerung'], ['cognac', 'Cognac'], ['slate', 'Rauch'],
-      ['p:leathergreen', 'Grünes Leder'], ['p:linen', 'Leinen'], ['p:marble', 'Marmor'], ['p:wood', 'Holz'],
-      ['p:velvet', 'Samt'], ['p:travertine', 'Travertin'], ['p:onyx', 'Onyx'], ['p:slate', 'Schiefer']
+      ['moss', t('Moos', 'Moss')], ['deepSea', t('Tiefsee', 'Deep sea')], ['dusk', t('Dämmerung', 'Dusk')], ['cognac', 'Cognac'], ['slate', t('Rauch', 'Smoke')],
+      ['p:leathergreen', t('Grünes Leder', 'Green leather')], ['p:linen', t('Leinen', 'Linen')], ['p:marble', t('Marmor', 'Marble')], ['p:wood', t('Holz', 'Wood')],
+      ['p:velvet', t('Samt', 'Velvet')], ['p:travertine', t('Travertin', 'Travertine')], ['p:onyx', 'Onyx'], ['p:slate', t('Schiefer', 'Slate')]
     ];
     var ICS = [
-      ['default', 'Automatisch'], ['light', 'Hell'], ['dark', 'Dunkel'], ['moss', 'Moos'], ['deepsea', 'Tiefsee'], ['dusk', 'Dämmerung'],
-      ['cognac', 'Cognac'], ['leather', 'Leder'], ['leathergreen', 'Grünes Leder'], ['marble', 'Marmor'], ['wood', 'Holz'], ['saddle', 'Sattelleder'],
-      ['linen', 'Leinen'], ['onyx', 'Onyx'], ['slate', 'Schiefer'], ['navy', 'Nachtblau'], ['graphite', 'Graphit'], ['plum', 'Pflaume']
+      ['default', t('Automatisch', 'Automatic')], ['light', t('Hell', 'Light')], ['dark', t('Dunkel', 'Dark')], ['moss', t('Moos', 'Moss')], ['deepsea', t('Tiefsee', 'Deep sea')], ['dusk', t('Dämmerung', 'Dusk')],
+      ['cognac', 'Cognac'], ['leather', t('Leder', 'Leather')], ['leathergreen', t('Grünes Leder', 'Green leather')], ['marble', t('Marmor', 'Marble')], ['wood', t('Holz', 'Wood')], ['saddle', t('Sattelleder', 'Saddle leather')],
+      ['linen', t('Leinen', 'Linen')], ['onyx', 'Onyx'], ['slate', t('Schiefer', 'Slate')], ['navy', t('Nachtblau', 'Night blue')], ['graphite', t('Graphit', 'Graphite')], ['plum', t('Pflaume', 'Plum')]
     ];
     function makeBd(key) {
       var el = document.createElement('div');
@@ -611,8 +624,8 @@
     }
     var bdPicker = $('#bdPicker'), icPicker = $('#icPicker'), screen = $('#customScreen'), picked = $('#picked');
     if (bdPicker && screen) {
-      var cur = { bd: 'Moos', ic: 'Automatisch' };
-      function say() { picked.textContent = 'Hintergrund: ' + cur.bd + ' · Symbol: ' + cur.ic; }
+      var cur = { bd: BDS[0][1], ic: ICS[0][1] };
+      function say() { picked.textContent = t('Hintergrund: ', 'Background: ') + cur.bd + t(' · Symbol: ', ' · Icon: ') + cur.ic; }
       BDS.forEach(function (b, n) {
         var li = document.createElement('li'), btn = document.createElement('button');
         btn.type = 'button'; btn.setAttribute('aria-label', b[1]); btn.title = b[1];
@@ -636,8 +649,8 @@
       var homeImg = $('#homeIcon .ic');
       ICS.forEach(function (c, n) {
         var li = document.createElement('li'), btn = document.createElement('button'), img = document.createElement('img');
-        img.src = 'assets/img/app-icons/' + c[0] + '.webp'; img.alt = ''; img.loading = 'lazy'; img.width = 52; img.height = 52;
-        btn.type = 'button'; btn.setAttribute('aria-label', 'Symbol ' + c[1]); btn.title = c[1];
+        img.src = BASE + 'assets/img/app-icons/' + c[0] + '.webp'; img.alt = ''; img.loading = 'lazy'; img.width = 52; img.height = 52;
+        btn.type = 'button'; btn.setAttribute('aria-label', t('Symbol ', 'Icon ') + c[1]); btn.title = c[1];
         btn.setAttribute('aria-pressed', String(n === 0));
         btn.appendChild(img);
         btn.addEventListener('click', function () {
@@ -663,7 +676,7 @@
       function next() {
         pos = (pos + 1) % order.length;
         var img = document.createElement('img');
-        img.src = 'assets/img/app-icons/' + order[pos] + '.webp'; img.alt = '';
+        img.src = BASE + 'assets/img/app-icons/' + order[pos] + '.webp'; img.alt = '';
         cycle.appendChild(img);
         requestAnimationFrame(function () { requestAnimationFrame(function () {
           var prev = $('img.is-on', cycle);

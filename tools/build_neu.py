@@ -1,6 +1,7 @@
-"""Baut die Startseite index.html aus index.src.html: setzt den Schriftzug und den Kopf von "Heute"
+"""Baut die Startseiten index.html (Deutsch) und en/index.html (Englisch) aus
+index.src.html und en/index.src.html: setzt den Schriftzug und den Kopf von "Heute"
 (Bogen mit Skala und Pillenplaner) an den markierten Stellen ein, damit sie nur
-einmal gepflegt werden müssen.
+einmal gepflegt werden müssen. Texte im Kopf wie in der App (Deutsch / Englisch).
 
     python3 tools/build_neu.py
 """
@@ -11,8 +12,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-WORDMARK = ('<span class="wordmark"><img class="wm-d" src="assets/img/logo-96.png" alt="" '
+def wordmark(prefix: str) -> str:
+    return (f'<span class="wordmark"><img class="wm-d" src="{prefix}assets/img/logo-96.png" alt="" '
             'width="23" height="24"><span class="wm-rest">osano</span></span>')
+
+
+# Texte im Kopf von "Heute", wie in der App (Localizable.xcstrings)
+TEXT = {
+    'de': {'take': 'Fach 21:00 nehmen: Metformin 500 mg', 'kicker': 'Heute · Samstag', 'date': '21. November',
+           'days': 'Tage in Folge', 'wd': 'SA', 'day': '21.<br>Nov.', 'morning': '7:00', 'evening': '21:00',
+           'hint': 'Zum Nehmen ein Fach nach oben wischen'},
+    'en': {'take': 'Take the 9:00 PM compartment: Metformin 500 mg', 'kicker': 'Today · Saturday', 'date': 'November 21',
+           'days': 'days in a row', 'wd': 'SAT', 'day': 'Nov<br>21', 'morning': '7:00 AM', 'evening': '9:00 PM',
+           'hint': 'Swipe a compartment up to take it'},
+}
 
 
 def ticks() -> str:
@@ -35,19 +48,20 @@ def arc_path(r: float) -> str:
             f'A{r} {r} 0 1 1 {120 + r * math.cos(a1):.2f} {120 - r * math.sin(a1):.2f}')
 
 
-def today_top(key: str, shown: float, interactive: bool) -> str:
+def today_top(key: str, shown: float, interactive: bool, lang: str = 'de', prefix: str = '') -> str:
+    T = TEXT[lang]
     main = arc_path(96)
     sheen = arc_path(98.8)
     off = f'{1 - shown:.3f}'
     sheen_off = f'{1 - max(0, shown - 0.015):.3f}'
     comp_evening = (
         '<button class="comp-box" type="button" id="demoComp">'
-        '<span class="visually-hidden">Fach 21:00 nehmen: Metformin 500 mg</span>'
+        f'<span class="visually-hidden">{T["take"]}</span>'
         if interactive else '<span class="comp-box">'
     )
     close = '</button>' if interactive else '</span>'
     return f'''<div class="t2-head" aria-hidden="true">
-            <div><div class="t2-kicker">Heute · Samstag</div><div class="t2-date">21. November</div></div>
+            <div><div class="t2-kicker">{T["kicker"]}</div><div class="t2-date">{T["date"]}</div></div>
             <span class="t2-gear"><svg><use href="assets/img/icons.svg#i-gear-fill"/></svg></span>
           </div>
           <div class="arc2" aria-hidden="true" data-arc="{key}" data-shown="{shown}">
@@ -66,29 +80,34 @@ def today_top(key: str, shown: float, interactive: bool) -> str:
               <circle class="tip" r="18" cx="120" cy="24" style="fill:url(#tipGrad-{key})"/>
             </svg>
             <div class="arc2-num">7</div>
-            <div class="arc2-label">Tage in Folge</div>
+            <div class="arc2-label">{T["days"]}</div>
           </div>
           <div class="planner">
-            <div class="daytab" aria-hidden="true"><b>SA</b><small>21.<br>Nov.</small></div>
+            <div class="daytab" aria-hidden="true"><b>{T["wd"]}</b><small>{T["day"]}</small></div>
             <div class="comp is-done" aria-hidden="true" style="--lid:#8DAA74">
               <span class="comp-box"><span class="well"></span><span class="lid2" style="--open:1"></span></span>
-              <span class="comp-time">7:00</span>
+              <span class="comp-time">{T["morning"]}</span>
             </div>
             <div class="comp is-current" style="--lid:#8DAA74">
               {comp_evening}<span class="well" aria-hidden="true"></span><i class="p drop" style="left:44%;bottom:12px;--r:20deg;--d:500ms" aria-hidden="true"></i><span class="check" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="lid2" aria-hidden="true"></span>{close}
-              <span class="comp-time" aria-hidden="true">21:00</span>
+              <span class="comp-time" aria-hidden="true">{T["evening"]}</span>
             </div>
           </div>
-          <div class="t2-hint" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-hand-draw"/></svg>Zum Nehmen ein Fach nach oben wischen</div>'''
+          <div class="t2-hint" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-hand-draw"/></svg>{T["hint"]}</div>'''.replace('href="assets/', f'href="{prefix}assets/')
+
+
+def build(src_name: str, out_name: str, lang: str, prefix: str) -> None:
+    src = (ROOT / src_name).read_text(encoding='utf-8')
+    src = src.replace('<!--WORDMARK-->', wordmark(prefix))
+    src = src.replace('<!--TODAYTOP:demo-->', today_top('demo', 0.5, True, lang, prefix))
+    src = src.replace('<!--TODAYTOP:custom-->', today_top('custom', 0.5, False, lang, prefix))
+    header = f'<!-- Erzeugt von tools/build_neu.py aus {src_name}. Bitte dort ändern. -->\n'
+    (ROOT / out_name).write_text(src.replace('<!doctype html>\n', '<!doctype html>\n' + header, 1), encoding='utf-8')
 
 
 def main() -> None:
-    src = (ROOT / 'index.src.html').read_text(encoding='utf-8')
-    src = src.replace('<!--WORDMARK-->', WORDMARK)
-    src = src.replace('<!--TODAYTOP:demo-->', today_top('demo', 0.5, True))
-    src = src.replace('<!--TODAYTOP:custom-->', today_top('custom', 0.5, False))
-    header = '<!-- Erzeugt von tools/build_neu.py aus index.src.html. Bitte dort ändern. -->\n'
-    (ROOT / 'index.html').write_text(src.replace('<!doctype html>\n', '<!doctype html>\n' + header, 1), encoding='utf-8')
+    build('index.src.html', 'index.html', 'de', '')
+    build('en/index.src.html', 'en/index.html', 'en', '../')
 
 
 # Ist Dosano im App Store? False: App-Store-Knöpfe ausgeblendet, "Erinnere mich zum Start"
@@ -96,7 +115,8 @@ def main() -> None:
 LAUNCHED = False
 
 ASSETS = ['assets/css/site.css', 'assets/css/neu.css', 'assets/js/neu.js', 'assets/js/site.js', 'assets/img/icons.svg']
-PAGES = ['index.html', 'alt.html', 'datenschutz.html', 'impressum.html', 'support.html', 'en/index.html', '404.html']
+PAGES = ['index.html', 'alt.html', 'datenschutz.html', 'impressum.html', 'support.html', '404.html',
+         'en/index.html', 'en/privacy.html', 'en/legal-notice.html', 'en/support.html']
 
 
 def stamp() -> None:

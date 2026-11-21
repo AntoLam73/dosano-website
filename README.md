@@ -48,16 +48,23 @@ Dann http://localhost:8000 öffnen.
 
 ### Eigene Domain dosano.app
 
-1. Domain kaufen. `.app`-Domains funktionieren nur mit HTTPS, das stellt GitHub Pages
-   automatisch bereit.
-2. Beim Domain-Anbieter DNS-Einträge setzen (laut GitHub-Dokumentation "Managing a custom
-   domain for your GitHub Pages site"): vier `A`-Einträge für `dosano.app` auf
-   185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153 und einen
-   `CNAME`-Eintrag `www` auf `antolam73.github.io`.
-3. In Settings, Pages unter "Custom domain" `dosano.app` eintragen und "Enforce HTTPS" anhaken.
-   GitHub legt dabei die Datei `CNAME` im Repo an.
-4. Danach `og:image` auf die volle Adresse `https://dosano.app/assets/img/og.png` umstellen
-   und eine `sitemap.xml` ergänzen.
+1. Domain bei einem Registrar kaufen (z. B. INWX, Cloudflare Registrar oder Porkbun).
+2. Beim Registrar die DNS-Einträge setzen (laut GitHub-Dokumentation
+   "Managing a custom domain for your GitHub Pages site"):
+   - `A`-Einträge für `@` (also `dosano.app`): 185.199.108.153, 185.199.109.153,
+     185.199.110.153, 185.199.111.153
+   - optional `AAAA`-Einträge für `@`: 2606:50c0:8000::153, 2606:50c0:8001::153,
+     2606:50c0:8002::153, 2606:50c0:8003::153
+   - `CNAME`-Eintrag `www` auf `antolam73.github.io`
+3. Auf GitHub: Settings, Pages, "Custom domain" `dosano.app` eintragen, Save.
+   GitHub legt dabei die Datei `CNAME` in `main` an.
+4. Warten, bis der DNS-Check grün ist und GitHub das Zertifikat ausgestellt hat
+   (kann bis zu einer Stunde dauern), dann "Enforce HTTPS" anhaken.
+   `.app`-Domains funktionieren nur mit HTTPS, vorher zeigt der Browser einen Fehler.
+5. Empfohlen: Domain im GitHub-Konto bestätigen (Settings des Kontos, Pages,
+   "Add a domain"), damit niemand anderes sie für eigene Seiten nutzen kann.
+6. Danach `og:image` auf `https://dosano.app/assets/img/og.png` umstellen und eine
+   `sitemap.xml` ergänzen.
 
 ## Startseite bearbeiten
 
