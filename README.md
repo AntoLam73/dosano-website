@@ -57,3 +57,16 @@ Dann http://localhost:8000 öffnen.
    GitHub legt dabei die Datei `CNAME` im Repo an.
 4. Danach `og:image` auf die volle Adresse `https://dosano.app/assets/img/og.png` umstellen
    und eine `sitemap.xml` ergänzen.
+
+## Zweite Fassung mit mehr Bewegung: `neu.html`
+
+`neu.html` ist eine neue Startseite zum Vergleichen, die bisherige `index.html` bleibt
+unverändert. Sie wird aus `neu.src.html` erzeugt (Schriftzug und Kopf von "Heute" stehen
+nur einmal in `tools/build_neu.py`):
+
+```bash
+python3 tools/build_neu.py
+```
+
+Styles in `assets/css/neu.css`, Bewegung in `assets/js/neu.js`. Die Seite ist mit
+`noindex` markiert, solange sie nur zum Anschauen da ist.
