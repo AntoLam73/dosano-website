@@ -160,65 +160,83 @@
       </ul>
       <a class="store-link" href="https://apps.apple.com/de/app/dosano/id0000000000">Im App Store laden<svg aria-hidden="true"><use href="assets/img/icons.svg#i-arrow"/></svg></a>
     </div>
-    <div class="home" id="home" role="group" aria-label="Beispiel: Widgets von Dosano auf dem Home-Bildschirm">
-      <div class="bd" data-photo style="--photo:url(../img/backdrops/leathergreen.webp)" aria-hidden="true"></div>
-      <div class="wgrid">
-        <div class="wcell" style="--i:0">
-          <div class="widget" aria-label="Widget Bestand: Ibuprofen 400 mg ist leer" role="img">
-            <div class="w-title" style="align-items:center"><span class="w-label"><svg><use href="assets/img/icons.svg#i-cart"/></svg>Leer</span><i class="wdot" style="background:#8DAA74"></i></div>
-            <div style="flex:1"></div>
-            <div class="w-name">Ibuprofen 400 mg</div>
-            <div class="w-big">0</div>
-            <div class="w-sub" style="margin-bottom:8px">0 Tabletten übrig</div>
-            <div class="w-bar"><i class="red" style="--v:0.04"></i></div>
-          </div><span>Dosano</span>
-        </div>
-        <div class="wcell" style="--i:1">
-          <div class="widget" data-w="next">
-            <div class="w-title"><b>Als Nächstes</b><span data-count>1/2</span></div>
-            <div class="wmini" aria-hidden="true"><span class="wslot is-current" style="--h:42"><span class="comp-box"><span class="well"></span><i class="p"></i><span class="check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="lid2"></span></span></span><div><div class="w-sub" data-next-time>Heute · 21:00</div><div class="w-sub">1 Tablette</div></div></div>
-            <div class="w-name" style="font-family:var(--serif);margin-top:6px" data-next-name>Metformin 500 mg</div>
-            <div style="flex:1"></div>
-            <button class="w-take" type="button" data-take><svg aria-hidden="true"><use href="assets/img/icons.svg#i-tick"/></svg><span>Genommen</span></button>
-          </div><span>Dosano</span>
-        </div>
-        <div class="wcell" style="--i:2">
-          <div class="widget" role="img" aria-label="Widget Heute: Pillenplaner mit den Fächern 7:00 und 21:00" data-w="planner">
-            <div class="w-title"><b>Heute</b><span data-count>1/2</span></div>
-            <div style="flex:1"></div>
-            <div class="wstrip">
-              <span class="wslot is-done" style="--h:56"><span class="comp-box"><span class="well"></span><span class="check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="lid2"></span></span><span class="comp-time">7:00</span></span>
-              <span class="wslot is-current" data-evening style="--h:56"><span class="comp-box"><span class="well"></span><i class="p"></i><span class="check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="lid2"></span></span><span class="comp-time">21:00</span></span>
+    <div class="phone reveal" style="--delay:120ms">
+      <div class="screen homescreen" id="home" role="group" aria-label="Beispiel: Widgets von Dosano auf dem Home-Bildschirm">
+        <div class="hs-wall" aria-hidden="true"></div>
+        <div class="island" aria-hidden="true"></div>
+        <div class="statusbar" aria-hidden="true" style="color:#fff"><span>21:02</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="assets/img/icons.svg#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="assets/img/icons.svg#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="assets/img/icons.svg#i-battery"/></svg></span></div>
+        <div class="hs-grid">
+          <div class="hs-cell">
+            <div class="wg" role="img" aria-label="Widget Bestand: Ibuprofen 400 mg ist leer, 0 Tabletten übrig">
+              <div class="wg-top"><span class="wg-label red"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-cart"/></svg>Leer</span><i class="p white wg-pill"></i></div>
+              <div class="wg-fill"></div>
+              <div class="wg-name">Ibuprofen 400 mg</div>
+              <div class="wg-big red">0</div>
+              <div class="wg-sub" style="margin-bottom:calc(var(--u) * 8)">0 Tabletten übrig</div>
+              <div class="wg-bar h8"><i class="empty" style="--r:0"></i></div>
             </div>
-          </div><span>Dosano</span>
-        </div>
-        <div class="wcell" style="--i:3">
-          <div class="widget" role="img" aria-label="Widget Bestand im Überblick: Ibuprofen leer, Vitamin D3 noch 17 Tage, Metformin noch 48 Tage, L-Thyroxin noch 101 Tage">
-            <div class="w-title"><b>Bestand</b><svg style="width:15px;height:15px" aria-hidden="true"><use href="assets/img/icons.svg#i-warn"/></svg></div>
-            <div class="wlist">
-              <div><i class="wdot" style="background:#8DAA74"></i><span>Ibuprofen 400 mg</span><b style="color:#F2A396">0</b><span class="w-bar"><i class="red" style="--v:0.04;--bd:400ms"></i></span></div>
-              <div><i class="wdot" style="background:#C2A55E"></i><span>Vitamin D3</span><b>17 T</b><span class="w-bar"><i class="amber" style="--v:0.28;--bd:480ms"></i></span></div>
-              <div><i class="wdot" style="background:#8DAA74"></i><span>Metformin</span><b>48 T</b><span class="w-bar"><i style="--v:0.6;--bd:560ms"></i></span></div>
-              <div><i class="wdot" style="background:#8DAA74"></i><span>L-Thyroxin</span><b>101 T</b><span class="w-bar"><i style="--v:0.92;--bd:640ms"></i></span></div>
+            <span class="hs-label">Dosano</span>
+          </div>
+          <div class="hs-cell">
+            <div class="wg" data-w="next">
+              <div class="wg-head"><b data-next-head>Als Nächstes</b><span data-count>1/2</span></div>
+              <div class="wg-next" data-next-body>
+                <div class="wg-nextrow"><span class="sc is-current wg-c50" style="--h:46;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><i class="p"></i><span class="sc-check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="sc-lid"></span></span><div><div class="wg-when">Jetzt · 21:00</div><div class="wg-sub2">1 Tablette</div></div></div>
+                <div class="wg-title">Metformin 500 mg</div>
+                <div class="wg-fill"></div>
+                <button class="wg-btn full" type="button" data-take aria-label="Metformin 500 mg als genommen markieren"><svg><use href="assets/img/icons.svg#i-tick"/></svg><span>Genommen</span></button>
+              </div>
+              <div class="wg-done" data-next-done hidden>
+                <div class="wg-fill"></div>
+                <span class="wg-badge"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span>
+                <div class="wg-donetitle">Alles erledigt</div>
+                <div class="wg-sub">2/2 genommen</div>
+              </div>
             </div>
-          </div><span>Dosano</span>
-        </div>
-        <div class="wcell wide" style="--i:4">
-          <div class="widget" data-w="medium">
-            <div class="w-title"><b>Heute</b><span data-count-long>1/2 genommen</span></div>
-            <div class="wstrip" style="margin-top:8px" aria-hidden="true">
-              <span class="wslot is-done" style="--h:44"><span class="comp-box"><span class="well"></span><span class="check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="lid2"></span></span><span class="comp-time">7:00</span></span>
-              <span class="wslot is-current" data-evening style="--h:44"><span class="comp-box"><span class="well"></span><i class="p"></i><span class="check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="lid2"></span></span><span class="comp-time">21:00</span></span>
+            <span class="hs-label">Dosano</span>
+          </div>
+          <div class="hs-cell">
+            <div class="wg" role="img" aria-label="Widget Pillenplaner: 7:00 erledigt, 21:00 offen" data-w="planner">
+              <div class="wg-head small"><b>Heute</b><span data-count>1/2</span></div>
+              <div class="wg-pgrid">
+                <div class="wg-slot"><span class="sc is-open" style="--h:40;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><span class="sc-check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="sc-lid"></span></span><span class="wg-time">7:00</span></div>
+                <div class="wg-slot current" data-evening><span class="sc is-current" style="--h:40;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><i class="p"></i><span class="sc-check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="sc-lid"></span></span><span class="wg-time">21:00</span></div>
+              </div>
             </div>
-            <div style="flex:1"></div>
-            <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px">
-              <div style="min-width:0"><div class="w-sub" data-next-time>Heute · 21:00</div><div class="w-name" style="font-family:var(--serif)" data-next-name>Metformin 500 mg</div></div>
-              <button class="w-take" type="button" data-take style="padding:0 16px;flex:none"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-tick"/></svg><span>Genommen</span></button>
+            <span class="hs-label">Dosano</span>
+          </div>
+          <div class="hs-cell">
+            <div class="wg" role="img" aria-label="Widget Bestand im Überblick: Ibuprofen leer, Metformin noch 5 Tage, Vitamin D3 noch 38 Tage, L-Thyroxin noch 64 Tage">
+              <div class="wg-head small"><b>Bestand</b><svg class="wg-warn" aria-hidden="true"><use href="assets/img/icons.svg#i-warn"/></svg></div>
+              <div class="wg-list">
+                <div><i class="p white"></i><span>Ibuprofen 400 mg</span><b class="red">0</b><span class="wg-bar h4"><i class="empty" style="--r:0"></i></span></div>
+                <div><i class="p"></i><span>Metformin 500 mg</span><b class="orange">5 T</b><span class="wg-bar h4"><i class="low" style="--r:0.05"></i></span></div>
+                <div><i class="p yellow"></i><span>Vitamin D3 1000 IE</span><b>38 T</b><span class="wg-bar h4"><i style="--r:0.63"></i></span></div>
+                <div><i class="p teal"></i><span>L-Thyroxin 50 µg</span><b>64 T</b><span class="wg-bar h4"><i style="--r:0.64"></i></span></div>
+              </div>
             </div>
-          </div><span>Dosano</span>
+            <span class="hs-label">Dosano</span>
+          </div>
+          <div class="hs-cell wide">
+            <div class="wg wide" data-w="medium">
+              <div class="wg-head"><b class="b15">Heute</b><span class="semi" data-count-long>1/2 genommen</span></div>
+              <div class="sstrip" aria-hidden="true">
+                <div class="wg-slot"><span class="sc is-open" style="--h:44;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><span class="sc-check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="sc-lid"></span></span><span class="wg-time">7:00</span></div>
+                <div class="wg-slot current" data-evening><span class="sc is-current" style="--h:44;--tint:#8DAA74"><span class="sc-wall"></span><span class="sc-well"></span><i class="p"></i><span class="sc-check"><svg><use href="assets/img/icons.svg#i-tick"/></svg></span><span class="sc-lid"></span></span><span class="wg-time">21:00</span></div>
+              </div>
+              <div class="wg-fill"></div>
+              <div class="wg-medrow" data-next-body>
+                <div class="wg-medtext"><div class="wg-when small">Jetzt · 21:00</div><div class="wg-title b15">Metformin 500 mg</div></div>
+                <button class="wg-btn" type="button" data-take aria-label="Metformin 500 mg als genommen markieren"><svg><use href="assets/img/icons.svg#i-tick"/></svg><span>Genommen</span></button>
+              </div>
+              <div class="wg-allempty" data-next-done hidden><svg aria-hidden="true"><use href="assets/img/icons.svg#i-check"/></svg>Alle Fächer sind leer. Bis morgen!</div>
+            </div>
+            <span class="hs-label">Dosano</span>
+          </div>
         </div>
+        <div class="home-ind light" aria-hidden="true"></div>
+        <p class="visually-hidden" role="status" id="wStatus"></p>
       </div>
-      <p class="visually-hidden" role="status" id="wStatus"></p>
     </div>
   </div>
 </section>
@@ -240,7 +258,8 @@
       <div class="screen hist" id="cal">
         <div class="island" aria-hidden="true"></div>
         <div class="statusbar" aria-hidden="true"><span>21:02</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="assets/img/icons.svg#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="assets/img/icons.svg#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="assets/img/icons.svg#i-battery"/></svg></span></div>
-        <div class="h-title" aria-hidden="true">Verlauf</div>
+        <div class="faint" aria-hidden="true"></div>
+        <div class="h-top" aria-hidden="true"><div class="h-title">Verlauf</div><span class="gbtn"><svg><use href="assets/img/icons.svg#i-jar"/></svg></span></div>
         <div class="h-card">
           <div class="h-head" aria-hidden="true"><span class="h-nav"><svg><use href="assets/img/icons.svg#i-chev-left"/></svg></span><div><b>November 2026</b><small>Dieser Monat</small></div><span class="h-nav"><svg><use href="assets/img/icons.svg#i-chev-right"/></svg></span></div>
           <div class="h-grid" id="calGrid" role="group" aria-label="Kalender November 2026">
@@ -265,7 +284,7 @@
   <div class="wrap split flip">
     <div class="reveal">
       <h2 id="b-title">Sagt Bescheid, bevor die Packung leer ist.</h2>
-      <p class="lead2">Dosano rechnet mit, wie lange dein Vorrat noch reicht, und meldet sich rechtzeitig. Nachgekauft? Ein Tippen, und der Bestand stimmt wieder. Probier es aus: Stell die Packungsgröße ein und füll den Vorrat auf.</p>
+      <p class="lead2">Dosano rechnet mit, wie lange dein Vorrat noch reicht, und meldet sich rechtzeitig. Nachgekauft? Ein Tippen, und der Bestand stimmt wieder. Probier es aus: Tipp bei Metformin auf „Nachgekauft“.</p>
       <ul class="ticks2">
         <li>Packung scannen: Name, Stärke und Packungsgröße werden vom Karton gelesen, direkt auf dem iPhone.</li>
         <li>Die Packungsgröße merkt sich Dosano für das nächste Mal.</li>
@@ -273,30 +292,47 @@
       </ul>
       <a class="store-link" href="https://apps.apple.com/de/app/dosano/id0000000000">Im App Store laden<svg aria-hidden="true"><use href="assets/img/icons.svg#i-arrow"/></svg></a>
     </div>
-    <div class="stock2" id="stock">
-      <div class="reach">
-        <small>Reicht noch</small>
-        <b id="reachDays">5 Tage</b>
-        <div class="sub" id="reachSub">bis Do. 26. Nov. · Metformin 500 mg</div>
-        <div class="jars" aria-hidden="true">
-          <div class="jar"><i class="dot" style="background:#8DAA74"></i><div class="jar-body" id="jarMetf" style="--fill:var(--amber)"><i style="height:12%"></i></div><b id="jarMetfDays" style="color:var(--amber-text)">5 T</b><span>Metformin</span></div>
-          <div class="jar"><i class="dot vitd"></i><div class="jar-body"><i style="height:62%;--bd:120ms"></i></div><b style="color:var(--accent)">38 T</b><span>Vitamin</span></div>
-          <div class="jar"><i class="dot thyroxin"></i><div class="jar-body"><i style="height:88%;--bd:240ms"></i></div><b style="color:var(--accent)">64 T</b><span>L-Thyroxin</span></div>
+    <div class="phone-wrap reveal" style="--delay:120ms">
+      <div class="phone">
+        <div class="screen stockscr" id="stock">
+          <div class="faint" aria-hidden="true"></div>
+          <div class="island" aria-hidden="true"></div>
+          <div class="statusbar" aria-hidden="true"><span>21:02</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="assets/img/icons.svg#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="assets/img/icons.svg#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="assets/img/icons.svg#i-battery"/></svg></span></div>
+          <div class="st-head" aria-hidden="true">
+            <div><div class="st-title">Bestand</div><div class="st-count" id="stCount">4 Medikamente</div></div>
+            <div class="st-btns"><span class="gbtn"><svg><use href="assets/img/icons.svg#i-grid"/></svg></span><span class="gbtn"><svg><use href="assets/img/icons.svg#i-sort"/></svg></span><span class="gbtn"><svg><use href="assets/img/icons.svg#i-scan"/></svg></span></div>
+          </div>
+          <div class="st-card">
+            <div class="st-sum" id="stSum"></div>
+            <div class="vials" id="vials" aria-hidden="true"></div>
+          </div>
+          <div class="st-listtitle" aria-hidden="true">Medikamente</div>
+          <div class="st-list" id="stList"></div>
+          <div class="tabbar" aria-hidden="true">
+          <div class="tabs"><span class="tab"><svg><use href="assets/img/icons.svg#i-sun"/></svg>Heute</span><span class="tab"><svg><use href="assets/img/icons.svg#i-bars"/></svg>Verlauf</span><span class="tab is-active"><svg><use href="assets/img/icons.svg#i-box"/></svg>Bestand</span></div>
+          <span class="tab-plus"><svg><use href="assets/img/icons.svg#i-plus"/></svg></span>
+        </div>
+        <div class="home-ind" aria-hidden="true"></div>
+          <div class="sheet-dim" id="sheetDim" aria-hidden="true"></div>
+          <div class="rsheet" id="rsheet" role="dialog" aria-modal="true" aria-labelledby="rsTitle" hidden>
+            <div class="rs-nav"><button type="button" class="gbtn" id="rsClose" aria-label="Abbrechen"><svg><use href="assets/img/icons.svg#i-xmark"/></svg></button><b id="rsTitle">Packung nachgekauft</b><span></span></div>
+            <div class="rs-body">
+              <div class="rs-card rs-headcard"><span class="rs-badge" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-pills"/></svg></span><div><div class="rs-name" id="rsName"></div><div class="rs-now" id="rsNow"></div></div></div>
+              <div class="rs-card"><div class="rs-ctitle">Wie viele sind dazugekommen?</div>
+                <div class="rs-amount"><span class="rs-input" id="rsAmount" aria-live="polite">100</span><span class="rs-unit">Tabletten</span></div>
+                <div class="rs-chips" id="rsChips" role="group" aria-label="Anzahl wählen"></div>
+              </div>
+              <div class="rs-card"><div class="rs-ctitle">Danach</div>
+                <div class="rs-after"><b id="rsAfter"></b><span id="rsDays"></span></div>
+                <div class="wg-bar h8 paper"><i id="rsBar"></i></div>
+              </div>
+            </div>
+            <div class="rs-bottom"><button type="button" class="rs-go" id="rsGo"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-box-fill"/></svg><span id="rsGoText">100 Tabletten auffüllen</span></button></div>
+          </div>
         </div>
       </div>
-      <div class="refill-card refill2" role="group" aria-labelledby="refillTitle">
-        <h3 id="refillTitle" style="font-size:1.35rem;letter-spacing:-0.01em">Packung nachgekauft</h3>
-        <p class="sub" id="refillSub">Metformin 500 mg · noch 10 Tabletten</p>
-        <div class="stepper">
-          <button type="button" id="packMinus" aria-label="Weniger Tabletten pro Packung">−</button>
-          <div><b><span class="roll" id="packRoll"><span id="packSize">100</span></span></b><small>Tabletten pro Packung</small></div>
-          <button type="button" id="packPlus" aria-label="Mehr Tabletten pro Packung">+</button>
-        </div>
-        <div class="preview"><span>Reicht danach</span><b id="refillUntil">bis Fr. 15. Jan.</b></div>
-        <button class="btn btn-primary" type="button" id="refillBtn">Vorrat auffüllen</button>
-        <span class="scan-tag"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-scan"/></svg>Oder Packung scannen: Dosano erkennt sie am Barcode.</span>
-        <p class="visually-hidden" role="status" id="refillStatus"></p>
-      </div>
+      <div class="phone-after"><button class="btn btn-small btn-quiet2" type="button" id="stockReset" hidden>Noch mal ausprobieren</button></div>
+      <p class="visually-hidden" role="status" id="refillStatus"></p>
     </div>
   </div>
 </section>

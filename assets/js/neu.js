@@ -33,7 +33,7 @@
   function shortDate(d) {
     var wd = ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.'][d.getDay()];
     var mo = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'][d.getMonth()];
-    return wd + ' ' + d.getDate() + '. ' + mo;
+    return wd + ', ' + d.getDate() + '. ' + mo;
   }
   function countUp(el, to, suffix, ms) {
     if (reduce) { el.textContent = to + suffix; return; }
@@ -358,24 +358,30 @@
   // Widgets: abhaken im Widget, alle ziehen mit -------------------------
   var home = $('#home');
   if (home) {
+    $$('.hs-cell', home).forEach(function (c, n) { c.style.setProperty('--i', n); });
     onVisible(home, function () { home.classList.add('is-in'); });
     var wTaken = false, wStatus = $('#wStatus');
     function setW(on) {
       wTaken = on;
-      $$('[data-evening]', home).forEach(function (s) { s.classList.toggle('is-done', on); });
-      $$('[data-count]', home).forEach(function (c) { c.textContent = on ? '2/2' : '1/2'; c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); });
-      $$('[data-count-long]', home).forEach(function (c) { c.textContent = on ? '2/2 genommen' : '1/2 genommen'; });
-      $$('[data-next-name]', home).forEach(function (c) { c.textContent = on ? 'Alles erledigt' : 'Metformin 500 mg'; });
-      $$('[data-next-time]', home).forEach(function (c) { c.textContent = on ? 'Heute · 2 von 2' : 'Heute · 21:00'; });
-      $$('[data-w="next"] .wslot', home).forEach(function (s) { s.classList.toggle('is-done', on); });
-      $$('[data-take]', home).forEach(function (b) {
-        b.setAttribute('aria-disabled', String(on));
-        $('span', b).textContent = on ? 'Erledigt' : 'Genommen';
-        b.setAttribute('aria-label', on ? 'Erledigt. Noch mal tippen zum Zurücksetzen' : 'Genommen');
+      $$('[data-evening]', home).forEach(function (slot) {
+        slot.classList.toggle('current', !on); slot.classList.toggle('done', on);
+        $('.sc', slot).classList.toggle('is-open', on);
       });
-      wStatus.textContent = on ? 'Metformin als genommen eingetragen. Alle Widgets zeigen 2 von 2.' : 'Zurückgesetzt.';
+      $$('[data-count]', home).forEach(function (c) { c.textContent = on ? '2/2' : '1/2'; c.classList.remove('pulse-num'); void c.offsetWidth; c.classList.add('pulse-num'); });
+      $$('[data-count-long]', home).forEach(function (c) { c.textContent = on ? '2/2 genommen' : '1/2 genommen'; });
+      $$('[data-next-head]', home).forEach(function (c) { c.textContent = on ? 'Heute' : 'Als Nächstes'; });
+      $$('[data-next-body]', home).forEach(function (c) { c.hidden = on; });
+      $$('[data-next-done]', home).forEach(function (c) {
+        c.hidden = !on;
+        if (on && !reduce && c.animate) c.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: EASE_OUT });
+      });
+      wStatus.textContent = on ? 'Metformin als genommen eingetragen. Alle Widgets zeigen 2 von 2.' : '';
     }
-    $$('[data-take]', home).forEach(function (b) { b.addEventListener('click', function () { setW(!wTaken); }); });
+    $$('[data-take]', home).forEach(function (b) { b.addEventListener('click', function () { setW(true); }); });
+    // Nach einer Weile wieder zurück, damit man es noch einmal ausprobieren kann.
+    home.addEventListener('click', function (e) {
+      if (wTaken && e.target.closest('.wg') && !e.target.closest('[data-take]')) setW(false);
+    });
   }
 
   // Verlauf: Kalender wie in der App, Tage zum Antippen --------------------
@@ -441,63 +447,118 @@
     });
   }
 
-  // Bestand: Packungsgröße einstellen, Vorrat auffüllen, zurücksetzen -----
+  // Bestand wie in der App: Fläschchen, Liste, Blatt "Packung nachgekauft" ----
   var stock = $('#stock');
   if (stock) {
     onVisible(stock, function () { stock.classList.add('is-in'); });
-    var left = 5, perDay = 1, pack = 100, filled = false;
-    var sizeEl = $('#packSize'), roll = $('#packRoll'), until = $('#refillUntil'), btn = $('#refillBtn');
-    var jar = $('#jarMetf'), jarFill = $('i', jar), jd = $('#jarMetfDays'), rd = $('#reachDays');
-    var START = { jarH: jarFill.style.height || '12%' };
-    function preview() { until.textContent = 'bis ' + shortDate(addDays(Math.floor((left + pack) / perDay))); }
-    function stepPack(d) {
-      if (filled) return;
-      var next = Math.max(10, Math.min(200, pack + d));
-      if (next === pack) return;
-      pack = next; sizeEl.textContent = pack;
-      roll.classList.remove('up', 'down'); void roll.offsetWidth; roll.classList.add(d > 0 ? 'up' : 'down');
-      preview();
+    var MEDS = [
+      { id: 'ibu', name: 'Ibuprofen', strength: '400 mg', short: 'Ibuprofen', pill: 'white', stock: 0, perDay: 0, pack: 20, low: 5 },
+      { id: 'metf', name: 'Metformin', strength: '500 mg', short: 'Metformin', pill: '', stock: 5, perDay: 1, pack: 100, low: 7 },
+      { id: 'vitd', name: 'Vitamin D3', strength: '1000 IE', short: 'Vitamin', pill: 'yellow', stock: 38, perDay: 1, pack: 60, low: 7 },
+      { id: 'thyr', name: 'L-Thyroxin', strength: '50 µg', short: 'L-Thyroxin', pill: 'teal', stock: 64, perDay: 1, pack: 100, low: 7 }
+    ];
+    var START = MEDS.map(function (m) { return m.stock; });
+    var ICO = function (n) { return '<svg aria-hidden="true"><use href="' + ICONS + '#' + n + '"/></svg>'; };
+    function days(m) { return m.perDay ? Math.floor(m.stock / m.perDay) : null; }
+    function level(m) { if (m.stock <= 0) return 'empty'; var d = days(m); return (d !== null ? d <= m.low : m.stock <= m.low) ? 'low' : 'ok'; }
+    function ratio(m) { return Math.min(1, m.stock / Math.max(m.pack, 1)); }
+    function tage(n) { return n === 1 ? '1 Tag' : n + ' Tage'; }
+    function daysText(m) { var d = days(m); return d === null ? m.stock + ' Tabletten' : 'noch ' + tage(d); }
+    function order() {
+      return MEDS.slice().sort(function (a, b) {
+        function rem(m) { if (m.stock <= 0) return -1; var d = days(m); return d !== null ? d / 30 : m.stock / m.pack; }
+        return rem(a) - rem(b);
+      });
     }
-    function swapReach(text, sub, color) {
-      rd.style.color = color;
-      if (!reduce && rd.animate) rd.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 420, easing: EASE_OUT });
-      rd.textContent = text;
-      $('#reachSub').textContent = sub;
+    var sum = $('#stSum'), vials = $('#vials'), list = $('#stList');
+    function render() {
+      var meds = order();
+      var withDays = meds.filter(function (m) { return days(m) !== null; });
+      var next = withDays.reduce(function (a, m) { return !a || days(m) < days(a) ? m : a; }, null);
+      var refillCount = meds.filter(function (m) { return level(m) !== 'ok'; }).length;
+      var nd = days(next), lv = level(next);
+      var until = 'bis ' + shortDate(addDays(nd)) + ' · ' + next.name + ' ' + next.strength;
+      if (refillCount > 1) until += ' · ' + refillCount + ' werden knapp';
+      sum.innerHTML = '<small>Reicht noch</small><b class="' + (lv === 'ok' ? '' : lv) + '">' + tage(nd) + '</b><span>' + until + '</span>';
+      vials.innerHTML = meds.map(function (m) {
+        var lv2 = level(m), d = days(m);
+        var col = lv2 === 'ok' ? 'var(--accent)' : (lv2 === 'low' ? 'var(--amber)' : 'var(--red-fill)');
+        return '<div class="vial" data-med="' + m.id + '"><i class="p ' + m.pill + '"></i><span class="vial-body' + (m.stock <= 0 ? ' empty' : '') + '"><i style="--r:' + ratio(m).toFixed(3) + ';--c:' + col + '"></i></span>' +
+          '<b class="' + (lv2 === 'ok' ? '' : lv2) + '">' + (d === null ? m.stock : d + ' T') + '</b><span>' + m.short + '</span></div>';
+      }).join('');
+      list.innerHTML = meds.map(function (m) {
+        var lv2 = level(m);
+        return '<div class="srow" data-med="' + m.id + '"><div class="srow-top"><i class="p ' + m.pill + '"></i><span class="srow-name">' + m.name + ' ' + m.strength + '</span>' +
+          '<span class="srow-days ' + (lv2 === 'ok' ? '' : lv2) + '">' + daysText(m) + '</span>' + ICO('i-chev-right') + '</div>' +
+          '<span class="wg-bar paper"><i class="' + (lv2 === 'ok' ? '' : lv2) + '" style="--r:' + ratio(m).toFixed(3) + '"></i></span>' +
+          '<div class="srow-bottom"><span>' + m.stock + ' Tabletten übrig</span><button type="button" class="rbtn ' + (lv2 === 'ok' ? '' : lv2) + (m.id === 'metf' && !refilledOnce ? ' hint' : '') + '" data-refill="' + m.id + '">' + ICO('i-plus') + 'Nachgekauft</button></div></div>';
+      }).join('');
     }
-    $('#packPlus').addEventListener('click', function () { stepPack(10); });
-    $('#packMinus').addEventListener('click', function () { stepPack(-10); });
-    $('#refillSub').textContent = 'Metformin 500 mg · noch ' + left + ' Tabletten';
-    preview();
-    jarFill.style.transition = reduce ? 'none' : 'height 1300ms cubic-bezier(0.34, 1.2, 0.64, 1)';
-    function fill() {
-      filled = true;
-      var count = left + pack, days = Math.floor(count / perDay);
-      btn.textContent = 'Zurücksetzen';
-      btn.classList.remove('btn-primary'); btn.classList.add('btn-quiet');
-      $('#refillSub').textContent = 'Metformin 500 mg · jetzt ' + count + ' Tabletten';
-      $('#packMinus').disabled = $('#packPlus').disabled = true;
-      jar.style.setProperty('--fill', 'var(--accent)');
-      jarFill.style.height = Math.min(92, 12 + days / 1.4) + '%';
-      jd.style.color = 'var(--accent)';
-      countUp(jd, days, ' T', 1200);
-      // Jetzt reicht Vitamin D3 am kürzesten.
-      swapReach('38 Tage', 'bis ' + shortDate(addDays(38)) + ' · Vitamin D3 1000 IE', 'var(--accent)');
-      $('#refillStatus').textContent = 'Vorrat aufgefüllt: ' + count + ' Tabletten, reicht ' + days + ' Tage. Mit Zurücksetzen kannst du es noch einmal ausprobieren.';
+    var refilledOnce = false;
+    render();
+
+    // Blatt "Packung nachgekauft"
+    var sheet = $('#rsheet'), dim = $('#sheetDim'), chips = $('#rsChips'), amountEl = $('#rsAmount');
+    var cur = null, amount = 0, lastFocus = null;
+    function sheetFill() {
+      var after = cur.stock + amount, d = cur.perDay ? Math.floor(after / cur.perDay) : null;
+      var lvNow = level(cur), dNow = days(cur);
+      $('#rsName').innerHTML = cur.name + '<small>' + cur.strength + '</small>';
+      var now = $('#rsNow');
+      now.textContent = 'Noch ' + cur.stock + ' Tabletten' + (dNow !== null ? ' · reicht ' + tage(dNow) : '');
+      now.className = 'rs-now ' + (lvNow === 'ok' ? '' : lvNow);
+      amountEl.textContent = amount;
+      $('#rsAfter').textContent = after + ' Tabletten';
+      $('#rsDays').textContent = d !== null ? 'reicht ' + tage(d) : '';
+      $('#rsBar').style.setProperty('--r', Math.min(1, after / Math.max(cur.pack, after, 1)).toFixed(3));
+      $('#rsGoText').textContent = amount + ' Tabletten auffüllen';
+      $$('button', chips).forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.n === amount)); });
     }
-    function unfill() {
-      filled = false;
-      btn.textContent = 'Vorrat auffüllen';
-      btn.classList.add('btn-primary'); btn.classList.remove('btn-quiet');
-      $('#refillSub').textContent = 'Metformin 500 mg · noch ' + left + ' Tabletten';
-      $('#packMinus').disabled = $('#packPlus').disabled = false;
-      jar.style.setProperty('--fill', 'var(--amber)');
-      jarFill.style.height = START.jarH;
-      jd.style.color = 'var(--amber-text)';
-      jd.textContent = Math.floor(left / perDay) + ' T';
-      swapReach(Math.floor(left / perDay) + ' Tage', 'bis ' + shortDate(addDays(Math.floor(left / perDay))) + ' · Metformin 500 mg', 'var(--amber-text)');
-      $('#refillStatus').textContent = 'Zurückgesetzt: noch ' + left + ' Tabletten.';
+    function openSheet(id) {
+      cur = MEDS.filter(function (m) { return m.id === id; })[0];
+      amount = cur.pack;
+      var sizes = [cur.pack].concat([20, 30, 50, 100].filter(function (n) { return n !== cur.pack; }));
+      chips.innerHTML = sizes.map(function (n) { return '<button type="button" data-n="' + n + '">' + (n === cur.pack ? n + ' · deine Packung' : n) + '</button>'; }).join('');
+      sheetFill();
+      lastFocus = document.activeElement;
+      sheet.hidden = false;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { sheet.classList.add('is-open'); dim.classList.add('is-on'); }); });
+      wait(reduce ? 0 : 200).then(function () { $('#rsGo').focus({ preventScroll: true }); });
     }
-    btn.addEventListener('click', function () { if (filled) unfill(); else fill(); });
+    function closeSheet() {
+      sheet.classList.remove('is-open'); dim.classList.remove('is-on');
+      wait(reduce ? 0 : 430).then(function () { sheet.hidden = true; });
+      if (lastFocus && lastFocus.isConnected) lastFocus.focus({ preventScroll: true });
+    }
+    chips.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      amount = +b.dataset.n; sheetFill();
+      amountEl.classList.remove('pulse-num'); void amountEl.offsetWidth; amountEl.classList.add('pulse-num');
+    });
+    $('#rsClose').addEventListener('click', closeSheet);
+    dim.addEventListener('click', closeSheet);
+    sheet.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSheet(); });
+    $('#rsGo').addEventListener('click', function () {
+      var m = cur;
+      m.stock += amount; refilledOnce = true;
+      closeSheet();
+      wait(reduce ? 0 : 250).then(function () {
+        render();
+        var row = $('.srow[data-med="' + m.id + '"]', list);
+        if (row && !reduce && row.animate) row.animate([{ backgroundColor: 'color-mix(in srgb, var(--accent) 14%, transparent)' }, { backgroundColor: 'transparent' }], { duration: 1400, easing: 'ease-out' });
+        $('#stockReset').hidden = false;
+        $('#refillStatus').textContent = m.name + ' aufgefüllt: jetzt ' + m.stock + ' Tabletten' + (m.perDay ? ', reicht ' + tage(days(m)) : '') + '.';
+      });
+    });
+    list.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-refill]'); if (b) openSheet(b.dataset.refill);
+    });
+    $('#stockReset').addEventListener('click', function () {
+      MEDS.forEach(function (m, n) { m.stock = START[n]; });
+      refilledOnce = false; render();
+      this.hidden = true;
+      $('#refillStatus').textContent = 'Zurückgesetzt.';
+    });
   }
 
   // Personalisieren: Hintergründe und App-Symbole ------------------------
