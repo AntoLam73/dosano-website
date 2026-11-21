@@ -1,4 +1,4 @@
-"""Baut neu.html aus neu.src.html: setzt den Schriftzug und den Kopf von "Heute"
+"""Baut die Startseite index.html aus index.src.html: setzt den Schriftzug und den Kopf von "Heute"
 (Bogen mit Skala und Pillenplaner) an den markierten Stellen ein, damit sie nur
 einmal gepflegt werden müssen.
 
@@ -81,12 +81,12 @@ def today_top(key: str, shown: float, interactive: bool) -> str:
 
 
 def main() -> None:
-    src = (ROOT / 'neu.src.html').read_text(encoding='utf-8')
+    src = (ROOT / 'index.src.html').read_text(encoding='utf-8')
     src = src.replace('<!--WORDMARK-->', WORDMARK)
     src = src.replace('<!--TODAYTOP:demo-->', today_top('demo', 0.5, True))
     src = src.replace('<!--TODAYTOP:custom-->', today_top('custom', 0.5, False))
-    header = '<!-- Erzeugt von tools/build_neu.py aus neu.src.html. Bitte dort ändern. -->\n'
-    (ROOT / 'neu.html').write_text(src.replace('<!doctype html>\n', '<!doctype html>\n' + header, 1), encoding='utf-8')
+    header = '<!-- Erzeugt von tools/build_neu.py aus index.src.html. Bitte dort ändern. -->\n'
+    (ROOT / 'index.html').write_text(src.replace('<!doctype html>\n', '<!doctype html>\n' + header, 1), encoding='utf-8')
 
 
 if __name__ == '__main__':

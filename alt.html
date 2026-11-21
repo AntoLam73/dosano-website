@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dosano: Medikamente pünktlich nehmen, Vorrat im Blick</title>
+<meta name="description" content="Dosano erinnert dich zuverlässig an deine Medikamente, protokolliert jede Einnahme und sagt dir rechtzeitig, wann du nachkaufen musst. Alle Daten bleiben auf deinem iPhone.">
+<meta name="theme-color" content="#3F7A4E">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/IBMPlexSerif-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dosano: Schon genommen? Dosano weiß es.">
+<meta property="og:description" content="Erinnert an Medikamente, protokolliert jede Einnahme, behält den Vorrat im Blick. Alles bleibt auf deinem iPhone.">
+<meta property="og:image" content="assets/img/og.png">
+<meta property="og:locale" content="de_DE">
+<!-- Sobald die App im App Store ist: App-ID eintragen, dann zeigt Safari ein Banner an.
+<meta name="apple-itunes-app" content="app-id=0000000000"> -->
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="site-header wrap">
+  <nav class="nav glass" aria-label="Hauptnavigation">
+    <a class="brand" href="./" aria-label="Dosano, Startseite"><img src="assets/img/logo-96.png" alt="" width="23" height="24">Dosano</a>
+    <ul class="nav-links">
+      <li><a href="#funktionen">Funktionen</a></li>
+      <li><a href="#datenschutz">Datenschutz</a></li>
+      <li><a href="#fragen">Fragen</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <span class="lang"><a href="en/" hreflang="en" lang="en" aria-label="English version">EN</a></span>
+    <a class="btn btn-primary btn-small" href="https://apps.apple.com/de/app/dosano/id0000000000"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-store"/></svg>Laden</a>
+  </nav>
+</header>
+
+<main id="inhalt">
+
+<!-- Hero -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 id="hero-title">Schon genommen? Dosano weiß es.</h1>
+      <p class="hero-lead">Dosano erinnert dich pünktlich an deine Medikamente, schreibt jede Einnahme mit und sagt dir rechtzeitig, wann du nachkaufen musst. Alles bleibt auf deinem iPhone.</p>
+      <div class="hero-actions">
+        <a class="btn btn-on-moss" href="https://apps.apple.com/de/app/dosano/id0000000000"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-store"/></svg>Im App Store laden</a>
+        <a class="btn btn-ghost-moss" href="#funktionen">Was Dosano kann</a>
+      </div>
+      <p class="hero-note">Für iPhone mit iOS 26 oder neuer · Deutsch und Englisch</p>
+    </div>
+
+    <div class="hero-stage" role="group" aria-labelledby="demo-label">
+      <div class="try-row">
+        <p class="try-hint" id="demo-label"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-swipe"/></svg>Probier’s aus: Wisch das Fach für 8:00 nach oben.</p>
+        <button class="btn btn-ghost-moss btn-small demo-reset" type="button" id="demoReset">Noch mal</button>
+      </div>
+      <div class="phone">
+        <div class="screen on-dark" id="demo">
+          <div class="island" aria-hidden="true"></div>
+          <div class="today-top" aria-hidden="true"></div>
+          <div class="statusbar" aria-hidden="true"><span>8:03</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="assets/img/icons.svg#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="assets/img/icons.svg#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="assets/img/icons.svg#i-battery"/></svg></span></div>
+          <div class="t-head" aria-hidden="true">
+            <div><div class="t-kicker">Heute · Samstag</div><div class="t-date">21. November</div></div>
+            <div class="t-gear"><svg><use href="assets/img/icons.svg#i-gear"/></svg></div>
+          </div>
+          <div class="arc" aria-hidden="true">
+            <svg viewBox="0 0 260 205">
+              <defs><linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E8FCDE"/><stop offset="1" stop-color="#78EC96"/></linearGradient></defs>
+              <path class="arc-track" d="M34.7 185 A110 110 0 1 1 225.3 185" fill="none" stroke-width="20" stroke-linecap="round"/>
+              <path class="arc-ticks" d="M50.4 176 A92 92 0 1 1 209.6 176" fill="none" stroke-width="5" stroke-dasharray="1.2 9.3"/>
+              <path class="arc-fill" id="arcFill" d="M34.7 185 A110 110 0 1 1 225.3 185" fill="none" stroke-width="20" stroke-linecap="round" stroke-dasharray="460.8" stroke-dashoffset="460.8"/>
+            </svg>
+            <div class="arc-num">12</div>
+            <div class="arc-label">Tage in Folge</div>
+          </div>
+          <div class="organizer">
+            <div class="day-badge" aria-hidden="true"><b>SA</b><small>21.<br>Nov.</small></div>
+            <div class="slot is-current">
+              <button class="tray" type="button" id="demoTray" aria-describedby="demo-label">
+                <span class="visually-hidden">Fach 8:00 nehmen: L-Thyroxin und Vitamin D3</span>
+                <span class="pills" aria-hidden="true"><i class="pill tab thyroxin"></i><i class="pill tab vitd"></i></span>
+                <span class="lid" aria-hidden="true"></span>
+              </button>
+              <span class="slot-time" aria-hidden="true">8:00</span>
+            </div>
+            <div class="slot" aria-hidden="true">
+              <span class="tray"><span class="pills"><i class="pill cap"></i></span><span class="lid"></span></span>
+              <span class="slot-time">13:00</span>
+            </div>
+            <div class="slot" aria-hidden="true">
+              <span class="tray"><span class="pills"><i class="pill cap"></i></span><span class="lid"></span></span>
+              <span class="slot-time">20:00</span>
+            </div>
+          </div>
+          <div class="t-hint" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-swipe"/></svg>Zum Nehmen ein Fach nach oben wischen</div>
+
+          <div class="sheet" aria-hidden="true">
+            <div class="grabber"></div>
+            <div class="due">
+              <div class="due-head swap"><span class="before">Fällig · 8:00 <span class="count">0 von 4</span></span><span class="after">Erledigt · 8:00 <span class="count">2 von 4</span></span></div>
+              <div class="due-row"><i class="dot thyroxin"></i><div><div class="med">L-Thyroxin<small>50 µg</small></div><div class="sub">1 Tablette · nüchtern</div></div><span class="swap"><span class="chip due-chip before">Fällig</span><span class="chip ok after">Genommen</span></span></div>
+              <div class="due-row"><i class="dot vitd"></i><div><div class="med">Vitamin D3<small>1000 IE</small></div><div class="sub">1 Tablette</div></div><span class="swap"><span class="chip due-chip before">Fällig</span><span class="chip ok after">Genommen</span></span></div>
+            </div>
+            <div class="day-title"><b>Mein Tag</b><span>4 Einnahmen</span></div>
+            <div class="log-row"><span class="time">13:00</span><div><div class="med">Metformin<small>500 mg</small></div><div class="sub">1 Tablette · zum Essen</div></div><span class="chip open">Offen</span></div>
+          </div>
+
+          <div class="tabbar" aria-hidden="true">
+            <div class="tabs"><span class="tab is-active"><svg><use href="assets/img/icons.svg#i-sun"/></svg>Heute</span><span class="tab"><svg><use href="assets/img/icons.svg#i-bars"/></svg>Verlauf</span><span class="tab"><svg><use href="assets/img/icons.svg#i-box"/></svg>Bestand</span></div>
+            <span class="tab-plus"><svg><use href="assets/img/icons.svg#i-plus"/></svg></span>
+          </div>
+          <div class="home-ind" aria-hidden="true"></div>
+        </div>
+      </div>
+      <p class="visually-hidden" role="status" id="demoStatus"></p>
+    </div>
+  </div>
+  <div class="hero-bottom" aria-hidden="true"></div>
+</section>
+
+<!-- Funktionen -->
+<section class="section" id="funktionen" aria-labelledby="f-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="f-title">Drei Dinge, die Dosano richtig gut kann.</h2>
+      <p>Erinnern, mitschreiben, nachkaufen. Kein Schnickschnack, kein schlechtes Gewissen, nur ein ruhiger Blick auf deinen Tag.</p>
+    </div>
+
+    <article class="feature" aria-labelledby="f1">
+      <div>
+        <h3 id="f1">Erinnert dich, genau dann, wenn’s dran ist.</h3>
+        <p>Dosano meldet sich pünktlich, auch wenn die App geschlossen ist. Mehrere Medikamente zur selben Zeit kommen in einer einzigen Mitteilung, abhaken geht direkt vom Sperrbildschirm.</p>
+        <ul>
+          <li>Noch nicht abgehakt? Die Erinnerung kommt bis zu dreimal wieder.</li>
+          <li>„Später“ schlägt passende Zeiten vor: in 30 Minuten, heute Abend, vor dem Schlafengehen.</li>
+          <li>Live Activity mit Countdown auf dem Sperrbildschirm und in der Dynamic Island.</li>
+        </ul>
+      </div>
+      <div class="feature-art on-moss" aria-hidden="true">
+        <div class="mini">
+          <div class="lock-time"><small>Samstag, 21. November</small><b>8:00</b></div>
+          <div class="notif">
+            <div class="notif-top"><img src="assets/img/icon.png" alt="" width="38" height="38"><div><b>Zeit für L-Thyroxin und Vitamin D3</b><p>Je 1 Tablette · L-Thyroxin nüchtern</p></div><time>jetzt</time></div>
+            <div class="notif-actions"><span>Alle genommen</span><span>In 15 Min erinnern</span></div>
+          </div>
+          <div class="live"><div><small>Nächste Einnahme · 13:00</small><b>Metformin 500 mg</b></div><span class="countdown">4:57</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature" aria-labelledby="f2">
+      <div>
+        <h3 id="f2">Schreibt mit, damit du es nicht musst.</h3>
+        <p>Jede Einnahme landet im Protokoll: genommen, verspätet oder ausgelassen, mit Uhrzeit. Der Kalender im Verlauf zeigt dir auf einen Blick, wie der Monat lief. Praktisch fürs nächste Arztgespräch.</p>
+        <ul>
+          <li>Vergessen einzutragen? Einfach nachträglich ändern, mit der richtigen Uhrzeit.</li>
+          <li>„Uhrzeit egal, Hauptsache heute“ für Vitamine und Co.</li>
+          <li>Bei Bedarf, etwa Ibuprofen, mit einem Tippen eintragen.</li>
+        </ul>
+      </div>
+      <div class="feature-art bare" aria-hidden="true">
+        <div class="log-card">
+          <div class="day-title"><b>Freitag, 20. November</b><span>3 von 4</span></div>
+          <div class="log-row"><span class="time">8:00</span><div><div class="med">L-Thyroxin<small>50 µg</small></div><div class="sub">genommen um 8:04</div></div><span class="chip ok">Genommen</span></div>
+          <div class="log-row"><span class="time">8:00</span><div><div class="med">Vitamin D3<small>1000 IE</small></div><div class="sub">genommen um 8:04</div></div><span class="chip ok">Genommen</span></div>
+          <div class="log-row"><span class="time">13:00</span><div><div class="med">Metformin<small>500 mg</small></div><div class="sub">genommen um 14:10</div></div><span class="chip late">Verspätet</span></div>
+          <div class="log-row"><span class="time">20:00</span><div><div class="med">Metformin<small>500 mg</small></div><div class="sub">auswärts gegessen</div></div><span class="chip skipped">Ausgelassen</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature" aria-labelledby="f3">
+      <div>
+        <h3 id="f3">Sagt Bescheid, bevor die Packung leer ist.</h3>
+        <p>Dosano rechnet mit, wie lange dein Vorrat noch reicht, und meldet sich rechtzeitig. Nachgekauft? Ein Tippen, und der Bestand stimmt wieder. Die Packungsgröße merkt sich Dosano für das nächste Mal.</p>
+        <ul>
+          <li>Packung scannen: Name, Stärke und Packungsgröße werden vom Karton gelesen, direkt auf dem iPhone.</li>
+          <li>Im Kalender siehst du, ab welchem Tag der Vorrat nicht mehr reicht.</li>
+          <li>Kur mit Enddatum, inklusive Hinweis, ob die Packung bis dahin genügt.</li>
+        </ul>
+      </div>
+      <div class="feature-art bare" aria-hidden="true">
+        <div class="refill-card">
+          <h4>Packung nachgekauft</h4>
+          <p class="sub">Metformin 500 mg · noch 10 Tabletten</p>
+          <div class="stepper"><span>−</span><div><b>100</b><small>Tabletten pro Packung</small></div><span>+</span></div>
+          <div class="preview"><span>Reicht danach</span><b>bis Fr. 15. Jan.</b></div>
+          <span class="btn btn-primary">Vorrat auffüllen</span>
+          <span class="scan-tag"><svg><use href="assets/img/icons.svg#i-scan"/></svg>Oder Packung scannen: Dosano erkennt sie am Barcode.</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="more">
+      <h3>Und an die Kleinigkeiten hat Dosano auch gedacht.</h3>
+      <ul class="more-list">
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-widget"/></svg></span><strong>Widgets</strong><span>Pillenplaner, nächste Einnahme und Bestand auf dem Home- und Sperrbildschirm.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-island"/></svg></span><strong>Live Activity</strong><span>Countdown in der Dynamic Island, abhaken direkt vom Sperrbildschirm.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-siri"/></svg></span><strong>Siri und Kurzbefehle</strong><span>„Tabletten genommen in Dosano“, und schon ist es eingetragen. Auch über die Action-Taste.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-scan"/></svg></span><strong>Packung scannen</strong><span>Liest Name, Stärke, Form, Packungsgröße und PZN, komplett auf dem Gerät.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-repeat"/></svg></span><strong>Erinnerung wiederholen</strong><span>Alle 10, 15, 30 oder 60 Minuten, höchstens dreimal und nie nach Mitternacht.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-hand"/></svg></span><strong>Bei Bedarf</strong><span>Medikamente ohne feste Zeiten mit einem Tippen eintragen.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-calendar"/></svg></span><strong>Kur mit Enddatum</strong><span>Fürs Antibiotikum: Danach kommen keine Erinnerungen mehr.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-globe"/></svg></span><strong>Auf Reisen</strong><span>Nach Ortszeit oder im gewohnten Rhythmus von zu Hause, etwa für die Pille.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-eye-off"/></svg></span><strong>Diskret</strong><span>Mitteilungen und Sperrbildschirm zeigen auf Wunsch keine Namen.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-pill"/></svg></span><strong>Deine Pille, dein Look</strong><span>16 Formen und 24 Farben, damit du jede Tablette sofort wiedererkennst.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-photo"/></svg></span><strong>Notizen und Fotos</strong><span>Packung oder Beipackzettel immer dabei, gespeichert nur auf deinem iPhone.</span></li>
+        <li><span class="ico" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-sun"/></svg></span><strong>Hell und dunkel</strong><span>Dosano folgt deinem iPhone, morgens wie spätabends angenehm zu lesen.</span></li>
+      </ul>
+      <a class="store-link" href="https://apps.apple.com/de/app/dosano/id0000000000">Im App Store laden<svg aria-hidden="true"><use href="assets/img/icons.svg#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- Ansichten -->
+<section class="section gallery-band" id="ansichten" aria-labelledby="g-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="g-title">So sieht ein ruhiger Tag aus.</h2>
+      <p>Heute, Verlauf und Bestand: drei Bildschirme, alles Wichtige sofort im Blick.</p>
+      <p class="gallery-hint">Zur Seite wischen für mehr.</p>
+    </div>
+    <ul class="gallery">
+      <li class="rise" style="--delay:0ms">
+        <div class="phone" role="img" aria-label="Bildschirm Heute: Pillenplaner mit den Fächern 8:00, 13:00 und 20:00, das Fach für 8:00 ist erledigt.">
+          <div class="screen on-dark is-taken">
+            <div class="island"></div>
+            <div class="today-top"></div>
+            <div class="statusbar"><span>8:05</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="assets/img/icons.svg#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="assets/img/icons.svg#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="assets/img/icons.svg#i-battery"/></svg></span></div>
+            <div class="t-head"><div><div class="t-kicker">Heute · Samstag</div><div class="t-date">21. November</div></div><div class="t-gear"><svg><use href="assets/img/icons.svg#i-gear"/></svg></div></div>
+            <div class="arc">
+              <svg viewBox="0 0 260 205"><path class="arc-track" d="M34.7 185 A110 110 0 1 1 225.3 185" fill="none" stroke-width="20" stroke-linecap="round"/><path class="arc-ticks" d="M50.4 176 A92 92 0 1 1 209.6 176" fill="none" stroke-width="5" stroke-dasharray="1.2 9.3"/><path class="arc-fill" d="M34.7 185 A110 110 0 1 1 225.3 185" fill="none" stroke-width="20" stroke-linecap="round" stroke-dasharray="460.8" stroke-dashoffset="230.4"/></svg>
+              <div class="arc-num">12</div><div class="arc-label">Tage in Folge</div>
+            </div>
+            <div class="organizer">
+              <div class="day-badge"><b>SA</b><small>21.<br>Nov.</small></div>
+              <div class="slot is-current"><span class="tray"><span class="pills"><i class="pill tab thyroxin"></i><i class="pill tab vitd"></i></span><span class="lid"></span></span><span class="slot-time">8:00</span></div>
+              <div class="slot"><span class="tray"><span class="pills"><i class="pill cap"></i></span><span class="lid"></span></span><span class="slot-time">13:00</span></div>
+              <div class="slot"><span class="tray"><span class="pills"><i class="pill cap"></i></span><span class="lid"></span></span><span class="slot-time">20:00</span></div>
+            </div>
+            <div class="t-hint"><svg><use href="assets/img/icons.svg#i-swipe"/></svg>Zum Nehmen ein Fach nach oben wischen</div>
+            <div class="sheet">
+              <div class="grabber"></div>
+              <div class="due">
+                <div class="due-head">Als Nächstes · 13:00 <span class="count">2 von 4</span></div>
+                <div class="due-row"><i class="dot metf"></i><div><div class="med">Metformin<small>500 mg</small></div><div class="sub">1 Tablette · zum Essen</div></div><span class="chip open">Offen</span></div>
+              </div>
+              <div class="day-title"><b>Mein Tag</b><span>4 Einnahmen</span></div>
+              <div class="log-row"><span class="time">8:00</span><div><div class="med">L-Thyroxin<small>50 µg</small></div><div class="sub">1 Tablette · nüchtern</div></div><span class="chip ok">Genommen</span></div>
+            </div>
+            <div class="tabbar"><div class="tabs"><span class="tab is-active"><svg><use href="assets/img/icons.svg#i-sun"/></svg>Heute</span><span class="tab"><svg><use href="assets/img/icons.svg#i-bars"/></svg>Verlauf</span><span class="tab"><svg><use href="assets/img/icons.svg#i-box"/></svg>Bestand</span></div><span class="tab-plus"><svg><use href="assets/img/icons.svg#i-plus"/></svg></span></div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+        <div class="caption"><strong>Heute</strong><span>Dein Pillenplaner: Fach nach oben wischen, fertig.</span></div>
+      </li>
+
+      <li class="rise" style="--delay:80ms">
+        <div class="phone" role="img" aria-label="Bildschirm Verlauf: Kalender November 2026, fast alle Tage pünktlich, 79 von 80 Einnahmen genommen, 96 Prozent pünktlich.">
+          <div class="screen">
+            <div class="island"></div>
+            <div class="statusbar"><span>8:05</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="assets/img/icons.svg#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="assets/img/icons.svg#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="assets/img/icons.svg#i-battery"/></svg></span></div>
+            <div class="s-title">Verlauf</div>
+            <div class="s-pad">
+              <div class="cal">
+                <div class="cal-head"><span class="round"><svg><use href="assets/img/icons.svg#i-chev-left"/></svg></span><div><b>November 2026</b><small>Dieser Monat</small></div><span class="round"><svg><use href="assets/img/icons.svg#i-chev-right"/></svg></span></div>
+                <div class="cal-grid">
+                  <span class="wd">Mo</span><span class="wd">Di</span><span class="wd">Mi</span><span class="wd">Do</span><span class="wd">Fr</span><span class="wd">Sa</span><span class="wd">So</span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span class="d ok">1</span>
+                  <span class="d ok">2</span><span class="d ok">3</span><span class="d ok">4</span><span class="d ok">5</span><span class="d late">6</span><span class="d ok">7</span><span class="d ok">8</span>
+                  <span class="d ok">9</span><span class="d ok">10</span><span class="d ok">11</span><span class="d ok">12</span><span class="d ok">13</span><span class="d ok">14</span><span class="d ok">15</span>
+                  <span class="d ok">16</span><span class="d late">17</span><span class="d ok">18</span><span class="d ok">19</span><span class="d part">20</span><span class="d today">21</span><span class="d">22</span>
+                  <span class="d">23</span><span class="d">24</span><span class="d">25</span><span class="d">26</span><span class="d warn">27</span><span class="d warn">28</span><span class="d warn">29</span>
+                  <span class="d warn">30</span>
+                </div>
+                <div class="legend"><span><i style="background:var(--accent)"></i>Pünktlich</span><span><i style="background:color-mix(in oklab, var(--accent) 42%, var(--surface))"></i>Verspätet</span><span><i style="background:var(--amber)"></i>Teilweise</span><span><i style="background:var(--red-fill)"></i>Verpasst</span></div>
+              </div>
+              <div class="stats"><div><b class="g">79/80</b><span>Genommen</span></div><div><b class="g">96 %</b><span>Pünktlich</span></div><div><b class="r">1</b><span>Ausgelassen</span></div></div>
+              <div class="day-title"><b>Heute</b><span>2 von 4</span></div>
+              <div class="log-row"><span class="time">8:00</span><div><div class="med">L-Thyroxin<small>50 µg</small></div><div class="sub">1 Tablette · nüchtern</div></div><span class="chip ok">Genommen</span></div>
+            </div>
+            <div class="tabbar"><div class="tabs"><span class="tab"><svg><use href="assets/img/icons.svg#i-sun"/></svg>Heute</span><span class="tab is-active"><svg><use href="assets/img/icons.svg#i-bars"/></svg>Verlauf</span><span class="tab"><svg><use href="assets/img/icons.svg#i-box"/></svg>Bestand</span></div><span class="tab-plus"><svg><use href="assets/img/icons.svg#i-plus"/></svg></span></div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+        <div class="caption"><strong>Verlauf</strong><span>Jeder Tag in Farbe, jede Einnahme im Protokoll.</span></div>
+      </li>
+
+      <li class="rise" style="--delay:160ms">
+        <div class="phone" role="img" aria-label="Bildschirm Bestand: Metformin reicht noch 5 Tage bis Donnerstag, 26. November. Vitamin D3 noch 38 Tage, L-Thyroxin noch 64 Tage.">
+          <div class="screen">
+            <div class="island"></div>
+            <div class="statusbar"><span>8:05</span><span class="sb-icons"><svg viewBox="0 0 20 12"><use href="assets/img/icons.svg#i-signal"/></svg><svg viewBox="0 0 17 12"><use href="assets/img/icons.svg#i-wifi"/></svg><svg viewBox="0 0 27 12"><use href="assets/img/icons.svg#i-battery"/></svg></span></div>
+            <div class="s-titlebar"><div><div class="s-title">Bestand</div><small>3 Medikamente</small></div><div class="icon-btns"><span class="round"><svg><use href="assets/img/icons.svg#i-grid"/></svg></span><span class="round"><svg><use href="assets/img/icons.svg#i-sort"/></svg></span><span class="round"><svg><use href="assets/img/icons.svg#i-scan"/></svg></span></div></div>
+            <div class="s-pad">
+              <div class="reach">
+                <small>Reicht noch</small>
+                <b>5 Tage</b>
+                <div class="sub">bis Do. 26. Nov. · Metformin 500 mg</div>
+                <div class="jars">
+                  <div class="jar"><span class="cap-ico"></span><div class="jar-body" style="--fill:var(--amber)"><i style="height:12%"></i></div><b style="color:var(--amber-text)">5 T</b><span>Metformin</span></div>
+                  <div class="jar"><i class="dot vitd"></i><div class="jar-body"><i style="height:62%"></i></div><b style="color:var(--accent)">38 T</b><span>Vitamin</span></div>
+                  <div class="jar"><i class="dot thyroxin"></i><div class="jar-body"><i style="height:88%"></i></div><b style="color:var(--accent)">64 T</b><span>L-Thyroxin</span></div>
+                </div>
+              </div>
+              <div class="day-title"><b>Medikamente</b></div>
+              <div class="stock-row">
+                <div class="top"><div class="left"><span class="cap-ico"></span><span class="med">Metformin<small>500 mg</small></span></div><span class="days low">noch 5 Tage</span></div>
+                <div class="bar"><i class="low" style="width:14%"></i></div>
+                <div class="bottom"><span class="sub">10 Tabletten übrig</span><span class="refill low"><svg><use href="assets/img/icons.svg#i-plus"/></svg>Nachgekauft</span></div>
+              </div>
+              <div class="stock-row">
+                <div class="top"><div class="left"><i class="dot vitd"></i><span class="med">Vitamin D3<small>1000 IE</small></span></div><span class="days">noch 38 Tage</span></div>
+                <div class="bar"><i style="width:62%"></i></div>
+                <div class="bottom"><span class="sub">38 Tabletten übrig</span><span class="refill"><svg><use href="assets/img/icons.svg#i-plus"/></svg>Nachgekauft</span></div>
+              </div>
+            </div>
+            <div class="tabbar"><div class="tabs"><span class="tab"><svg><use href="assets/img/icons.svg#i-sun"/></svg>Heute</span><span class="tab"><svg><use href="assets/img/icons.svg#i-bars"/></svg>Verlauf</span><span class="tab is-active"><svg><use href="assets/img/icons.svg#i-box"/></svg>Bestand</span></div><span class="tab-plus"><svg><use href="assets/img/icons.svg#i-plus"/></svg></span></div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+        <div class="caption"><strong>Bestand</strong><span>Wie lange reicht’s noch? Steht ganz oben.</span></div>
+      </li>
+    </ul>
+    <a class="store-link" href="https://apps.apple.com/de/app/dosano/id0000000000">Im App Store laden<svg aria-hidden="true"><use href="assets/img/icons.svg#i-arrow"/></svg></a>
+  </div>
+</section>
+
+<!-- Datenschutz-Versprechen -->
+<section class="section privacy-band" id="datenschutz" aria-labelledby="p-title">
+  <div class="wrap">
+    <h2 class="h2" id="p-title">Was du nimmst, geht niemanden etwas an. Auch uns nicht.</h2>
+    <p class="lead">Dosano hat keinen Server, kein Konto und kein Tracking. Deine Medikamente, Einnahmen und Fotos bleiben auf deinem iPhone, und nur dort.</p>
+    <ul class="promises">
+      <li><svg aria-hidden="true"><use href="assets/img/icons.svg#i-user-off"/></svg><div><strong>Kein Konto, keine Anmeldung</strong><span>App öffnen, loslegen. Wir wissen nicht einmal, wer du bist.</span></div></li>
+      <li><svg aria-hidden="true"><use href="assets/img/icons.svg#i-cloud-off"/></svg><div><strong>Kein Server, keine Cloud von uns</strong><span>Alles wird auf deinem iPhone gespeichert. Es gibt nichts, was wir hochladen könnten.</span></div></li>
+      <li><svg aria-hidden="true"><use href="assets/img/icons.svg#i-eye-off"/></svg><div><strong>Keine Werbung, keine Analyse</strong><span>Keine Tracker, keine Werbe-IDs, keine Statistikdienste in der App.</span></div></li>
+      <li><svg aria-hidden="true"><use href="assets/img/icons.svg#i-scan"/></svg><div><strong>Scan und Fotos bleiben lokal</strong><span>Die Kamera liest Packungen direkt auf dem Gerät. Fotos verlassen dein iPhone nicht.</span></div></li>
+      <li><svg aria-hidden="true"><use href="assets/img/icons.svg#i-lock"/></svg><div><strong>Diskret auf dem Sperrbildschirm</strong><span>Auf Wunsch zeigen Mitteilungen nur „Deine Einnahme“ statt des Namens.</span></div></li>
+      <li><svg aria-hidden="true"><use href="assets/img/icons.svg#i-check"/></svg><div><strong>Du hast die Kontrolle</strong><span>In den Einstellungen löschst du mit einem Tippen alle Daten. Weg ist weg.</span></div></li>
+    </ul>
+    <p style="margin-top:28px"><a href="datenschutz.html">Datenschutzerklärung lesen</a></p>
+    <a class="store-link" href="https://apps.apple.com/de/app/dosano/id0000000000">Im App Store laden<svg aria-hidden="true"><use href="assets/img/icons.svg#i-arrow"/></svg></a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="fragen" aria-labelledby="q-title">
+  <div class="wrap faq-grid">
+    <div class="section-head">
+      <h2 id="q-title">Gute Fragen.</h2>
+      <p>Deine ist nicht dabei? Schreib uns, wir antworten gern.</p>
+      <a class="store-link" href="support.html" style="margin-top:20px">Zum Support<svg aria-hidden="true"><use href="assets/img/icons.svg#i-arrow"/></svg></a>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Was kostet Dosano?<span class="chev" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Dosano wird als Abo im App Store angeboten. Den aktuellen Preis siehst du vor dem Kauf im App Store. Kündigen kannst du jederzeit in den Einstellungen deines iPhones: Tippe auf deinen Namen und dann auf „Abonnements“.</p></div>
+      </details>
+      <details>
+        <summary>Brauche ich ein Konto?<span class="chev" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Nein. Dosano funktioniert ohne Anmeldung, ohne E-Mail-Adresse und ohne Konto.</p></div>
+      </details>
+      <details>
+        <summary>Wo werden meine Daten gespeichert?<span class="chev" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Nur auf deinem iPhone. Widgets und Live Activity lesen dieselben Daten, ebenfalls auf dem Gerät. Wir betreiben keinen Server und bekommen nichts davon zu sehen.</p><p>Wenn du dein iPhone über iCloud oder deinen Computer sicherst, sind die Daten Teil dieses Backups. So ziehen sie mit, wenn du ein neues iPhone aus dem Backup einrichtest.</p></div>
+      </details>
+      <details>
+        <summary>Was passiert, wenn ich eine Einnahme verpasse?<span class="chev" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Erst mal nichts Schlimmes. Dosano erinnert dich auf Wunsch bis zu dreimal erneut. Hast du es genommen und nur nicht abgehakt, trägst du es nachträglich mit der richtigen Uhrzeit ein.</p><p>Ob du eine vergessene Dosis nachholen solltest, klärst du bitte mit deiner Ärztin, deinem Arzt oder in der Apotheke. Das steht oft auch im Beipackzettel.</p></div>
+      </details>
+      <details>
+        <summary>Erinnert Dosano an mehrere Medikamente zur selben Zeit?<span class="chev" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Ja, mit einer einzigen Mitteilung, zum Beispiel „Zeit für L-Thyroxin und Vitamin D3“, und mit „Alle genommen“ hakst du beide gleichzeitig ab. In der App bleibt jede Einnahme einzeln sichtbar.</p></div>
+      </details>
+      <details>
+        <summary>Welche Geräte werden unterstützt?<span class="chev" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Dosano läuft auf dem iPhone mit iOS 26 oder neuer. Eine Version für die Apple Watch und eine Anbindung an Apple Health gibt es noch nicht.</p></div>
+      </details>
+      <details>
+        <summary>Gibt es Dosano auch auf Englisch?<span class="chev" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Ja. Die App, Widgets, Mitteilungen und Siri sprechen Deutsch und Englisch, passend zur Sprache deines iPhones.</p></div>
+      </details>
+      <details>
+        <summary>Ersetzt Dosano ärztlichen Rat?<span class="chev" aria-hidden="true"><svg><use href="assets/img/icons.svg#i-chev-down"/></svg></span></summary>
+        <div class="answer"><p>Nein. Dosano ist kein Medizinprodukt, sondern eine Erinnerungs- und Notizhilfe. Welche Medikamente du wann und in welcher Menge nimmst, besprichst du bitte mit deiner Ärztin, deinem Arzt oder deiner Apotheke.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Download -->
+<section class="section download" id="laden" aria-labelledby="d-title">
+  <div class="wrap">
+    <picture>
+      <source srcset="assets/img/icon-dark.png 1x, assets/img/icon-dark@2x.png 2x" media="(prefers-color-scheme: dark)">
+      <img class="app-icon" src="assets/img/icon.png" srcset="assets/img/icon@2x.png 2x" alt="App-Symbol von Dosano" width="120" height="120">
+    </picture>
+    <h2 id="d-title">Morgen früh weißt du es einfach.</h2>
+    <p>Lade Dosano, leg dein erstes Medikament an oder probier es mit Beispieldaten aus. Dauert keine Minute.</p>
+    <a class="btn btn-primary" href="https://apps.apple.com/de/app/dosano/id0000000000"><svg aria-hidden="true"><use href="assets/img/icons.svg#i-store"/></svg>Im App Store laden</a>
+    <p class="hero-note">Für iPhone mit iOS 26 oder neuer</p>
+    <div class="notice" role="note">
+      <svg aria-hidden="true"><use href="assets/img/icons.svg#i-info"/></svg>
+      <p><strong>Wichtiger Hinweis:</strong> Dosano ist kein Medizinprodukt und ersetzt keine ärztliche oder pharmazeutische Beratung. Nimm Medikamente nur so, wie sie dir verordnet oder empfohlen wurden. Im Notfall ruf die 112 an.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <a class="brand" href="./"><img src="assets/img/logo-96.png" alt="" width="23" height="24">Dosano</a>
+      <nav aria-label="Rechtliches und Hilfe">
+        <ul>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="en/" hreflang="en" lang="en">English</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="footer-small">Dosano ist kein Medizinprodukt und ersetzt keine ärztliche oder pharmazeutische Beratung. Diese Website setzt keine Cookies und verwendet kein Tracking. © 2026 Dosano. Apple, iPhone, Siri und App Store sind Marken der Apple Inc.</p>
+  </div>
+</footer>
+</body>
+</html>

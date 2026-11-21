@@ -8,7 +8,8 @@ im Repo, keine Cookies, kein Tracking).
 
 | Datei | Inhalt |
 |---|---|
-| `index.html` | Startseite: Hero mit Vorführung, Funktionen, Ansichten, Datenschutz-Versprechen, FAQ, Download |
+| `index.html` | Startseite (erzeugt aus `index.src.html` mit `tools/build_neu.py`) |
+| `alt.html` | Erste Fassung der Startseite, zum Vergleichen (`noindex`) |
 | `datenschutz.html` | Datenschutzerklärung (App und Website) |
 | `impressum.html` | Impressum nach § 5 DDG |
 | `support.html` | Support-Seite (Support-URL für App Store Connect) |
@@ -58,15 +59,16 @@ Dann http://localhost:8000 öffnen.
 4. Danach `og:image` auf die volle Adresse `https://dosano.app/assets/img/og.png` umstellen
    und eine `sitemap.xml` ergänzen.
 
-## Zweite Fassung mit mehr Bewegung: `neu.html`
+## Startseite bearbeiten
 
-`neu.html` ist eine neue Startseite zum Vergleichen, die bisherige `index.html` bleibt
-unverändert. Sie wird aus `neu.src.html` erzeugt (Schriftzug und Kopf von "Heute" stehen
-nur einmal in `tools/build_neu.py`):
+Die Startseite `index.html` wird aus `index.src.html` erzeugt. Schriftzug und Kopf von
+"Heute" stehen nur einmal in `tools/build_neu.py`. Nach jeder Änderung an
+`index.src.html`:
 
 ```bash
 python3 tools/build_neu.py
 ```
 
-Styles in `assets/css/neu.css`, Bewegung in `assets/js/neu.js`. Die Seite ist mit
-`noindex` markiert, solange sie nur zum Anschauen da ist.
+Styles in `assets/css/site.css` und `assets/css/neu.css`, Bewegung in `assets/js/neu.js`.
+Die alte Adresse `neu.html` leitet zur Startseite weiter. Die erste Fassung liegt als
+`alt.html` daneben.
